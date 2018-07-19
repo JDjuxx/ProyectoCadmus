@@ -78,7 +78,12 @@ public class Staff extends javax.swing.JFrame {
         login.setLabel("LOGIN");
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
+            	
+            	if(username.getText().equals("root") && password.getText().equals("toor"))
+            		
+            		loginActionPerformed(evt);
+            	
+            	
             }
         });
         log.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 350, 45));

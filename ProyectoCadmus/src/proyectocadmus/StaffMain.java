@@ -231,6 +231,9 @@ public class StaffMain extends javax.swing.JFrame {
 		TypeInsert.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TypeInsertActionPerformed(evt);
+
+				retrieveTable1();
+
 			}
 		});
 		insertar.add(TypeInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 220, 40));
@@ -361,7 +364,7 @@ public class StaffMain extends javax.swing.JFrame {
 
 				}
 
-
+				retrieveTable1();
 
 			}
 		});
@@ -486,9 +489,6 @@ public class StaffMain extends javax.swing.JFrame {
 				String regex = "^\\d*[1-9]\\d*$"; //Positive Integer
 				String regex2 = "^[0-9]\\d{0,9}(\\.\\d{1,3})?%?$"; //Positive float
 
-
-
-
 				if((!(value.getText().equals("") && product.getText().equals("") && quantity.getText().equals(""))) && quantity.getText().matches(regex) && value.getText().matches(regex2)) {
 
 					try {
@@ -503,6 +503,8 @@ public class StaffMain extends javax.swing.JFrame {
 					}
 
 				}
+
+				retrieveTable2();
 
 			}
 		});
@@ -531,36 +533,12 @@ public class StaffMain extends javax.swing.JFrame {
 
 		insertar.add(productdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 430, 310));
 
-		jTable2.setModel(new javax.swing.table.DefaultTableModel(
-				new Object [][] {
-					{},
-					{},
-					{},
-					{},
-					{},
-					{}
-				},
-				new String [] {
-
-				}
-				));
+		retrieveTable2();
 		productTable.setViewportView(jTable2);
 
 		insertar.add(productTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
-		jTable1.setModel(new javax.swing.table.DefaultTableModel(
-				new Object [][] {
-					{},
-					{},
-					{},
-					{},
-					{},
-					{}
-				},
-				new String [] {
-
-				}
-				));
+		retrieveTable1();
 		userTable.setViewportView(jTable1);
 
 		insertar.add(userTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
@@ -640,6 +618,16 @@ public class StaffMain extends javax.swing.JFrame {
 		find.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				findActionPerformed(evt);
+
+				System.out.println("Find button pressed");
+
+				if(!emailname.getText().equals("")) {
+
+					retrieveTable3();
+
+				}
+
+
 			}
 		});
 		deleteUser.add(find, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
@@ -655,6 +643,27 @@ public class StaffMain extends javax.swing.JFrame {
 		delete.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				deleteActionPerformed(evt);
+
+				System.out.println("Delete (User) button pressed");
+
+				try {
+
+					conexion.openConection();
+
+					String id = (String)jTable3.getValueAt(jTable3.getSelectedRow(), 0);
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("DELETE FROM `CLIENTE` WHERE idCLIENTE = " + id + ";");
+					System.out.println("DELETE FROM `CLIENTE` WHERE idCLIENTE = " + id + ";");
+
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+
+				conexion.closeConection();
+				retrieveTable3();
 			}
 		});
 		deleteUser.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 350, 45));
@@ -690,6 +699,16 @@ public class StaffMain extends javax.swing.JFrame {
 		find1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				find1ActionPerformed(evt);
+
+				System.out.println("Find product button pressed");
+
+				if(!nameProduct.getText().equals("")) {
+
+					retrieveTable4();
+
+				}
+
+
 			}
 		});
 		deleteProduct.add(find1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 45));
@@ -705,6 +724,25 @@ public class StaffMain extends javax.swing.JFrame {
 		delete1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				delete1ActionPerformed(evt);
+
+				try {
+
+					conexion.openConection();
+
+					String id = (String)jTable4.getValueAt(jTable4.getSelectedRow(), 0);
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("DELETE FROM `PRODUCTO` WHERE `idPRODUCTO` = " + id + ";");
+					System.out.println("DELETE FROM `PRODUCTO` WHERE `idPRODUCTO` = " + id + ";");
+
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+
+				conexion.closeConection();
+				retrieveTable4();
 			}
 		});
 		deleteProduct.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 350, 45));
@@ -832,7 +870,7 @@ public class StaffMain extends javax.swing.JFrame {
 					System.out.println("Selected value: " + data);
 					System.out.println("Index: " + id);
 					String[] columnasProducto = {"idPRODUCTO", "nombreProducto", "valorUnit", "cantidadStock"};
-					
+
 					conexion.openConection();
 
 					System.out.println("Creating statement");
@@ -1000,14 +1038,14 @@ public class StaffMain extends javax.swing.JFrame {
 	private void TypeInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeInsertActionPerformed
 		setFalse(panels,tables);
 		option = this.TypeInsert.getSelectedIndex();
-                if(option==0){
-                 
-                }else{
-                    tables[option].setVisible(true);
-                    panels[option].setVisible(true);
-                    panels[option].setBackground(new Color(255,255,255,85));
-                    panels[option].requestFocus();
-                }
+		if(option==0){
+
+		}else{
+			tables[option].setVisible(true);
+			panels[option].setVisible(true);
+			panels[option].setBackground(new Color(255,255,255,85));
+			panels[option].requestFocus();
+		}
 		switch (option){
 		case 1:
 			user();
@@ -1022,13 +1060,13 @@ public class StaffMain extends javax.swing.JFrame {
 	private void TypeDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeDeleteActionPerformed
 		setFalse(panelsD,tablesD);
 		option = this.TypeDelete.getSelectedIndex();
-                if(option==0){
-                 
-                }else{
-                    panelsD[option].setVisible(true);
-                    panelsD[option].setBackground(new Color(255,255,255,85));
-                    panelsD[option].requestFocus();
-                }
+		if(option==0){
+
+		}else{
+			panelsD[option].setVisible(true);
+			panelsD[option].setBackground(new Color(255,255,255,85));
+			panelsD[option].requestFocus();
+		}
 		switch (option){
 		case 1:
 			deleteUser();
@@ -1038,6 +1076,218 @@ public class StaffMain extends javax.swing.JFrame {
 			break;
 		}
 	}//GEN-LAST:event_TypeDeleteActionPerformed
+
+	private void retrieveTable1() {
+
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT idCLIENTE AS ID, nombreCli AS Nombre, telefono AS Telefono, id AS Cedula, correo AS Correo, direccion AS Direccion  FROM `CLIENTE`, `LUGARGEO` WHERE CLIENTE.LUGARGEO_idLUGARGEO = LUGARGEO.idLUGARGEO;");
+			System.out.println("SELECT nombreCli AS Nombre, telefono AS Telefono, id AS Cedula, correo AS Correo, direccion AS Direccion  FROM `CLIENTE`, `LUGARGEO` WHERE CLIENTE.LUGARGEO_idLUGARGEO = LUGARGEO.idLUGARGEO;");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 0 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 1 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			jTable1.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+
+	}
+
+	private void retrieveTable2() {
+
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idPRODUCTO` AS ID, nombreProducto AS Producto, valorUnit AS Precio, cantidadStock AS 'En Stock' FROM `PRODUCTO`;");
+			System.out.println("SELECT `idPRODUCTO` AS ID, nombreProducto AS Producto, valorUnit AS Precio, cantidadStock AS 'En Stock' FROM `PRODUCTO`;");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 0 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 1 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			jTable2.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+
+	}
+
+	private void retrieveTable3() {
+
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT idCLIENTE AS ID, nombreCli AS Nombre, telefono AS Telefono, id AS Cedula, correo AS Correo, direccion AS Direccion  FROM `CLIENTE`, `LUGARGEO` WHERE CLIENTE.LUGARGEO_idLUGARGEO = LUGARGEO.idLUGARGEO AND `nombreCli` = '" + emailname.getText() +  "';");
+			System.out.println("SELECT idCLIENTE AS ID, nombreCli AS Nombre, telefono AS Telefono, id AS Cedula, correo AS Correo, direccion AS Direccion  FROM `CLIENTE`, `LUGARGEO` WHERE CLIENTE.LUGARGEO_idLUGARGEO = LUGARGEO.idLUGARGEO AND `nombreCli` = '" + emailname.getText() +  "';");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 0 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 1 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			if(rows.isEmpty()) {
+
+				rs = conexion.getStmt().executeQuery("SELECT idCLIENTE AS ID, nombreCli AS Nombre, telefono AS Telefono, id AS Cedula, correo AS Correo, direccion AS Direccion  FROM `CLIENTE`, `LUGARGEO` WHERE CLIENTE.LUGARGEO_idLUGARGEO = LUGARGEO.idLUGARGEO AND `correo` = '" + emailname.getText() +  "';");
+				System.out.println("SELECT idCLIENTE AS ID, nombreCli AS Nombre, telefono AS Telefono, id AS Cedula, correo AS Correo, direccion AS Direccion  FROM `CLIENTE`, `LUGARGEO` WHERE CLIENTE.LUGARGEO_idLUGARGEO = LUGARGEO.idLUGARGEO AND `nombreCli` = '" + emailname.getText() +  "';");
+				metaData = rs.getMetaData();
+
+				numberOfColumns = metaData.getColumnCount();
+				columnames = new Vector<String>();
+
+				for(int column = 0 ; column < numberOfColumns ; column++)
+					columnames.addElement(metaData.getColumnLabel(column + 1));
+
+				rows = new Vector<Object>();
+
+				while(rs.next()) {
+
+					Vector<String> newRow = new Vector<String>();
+
+					for(int i = 1 ; i <= numberOfColumns; i++)
+						newRow.addElement(rs.getString(i));
+
+					rows.addElement(newRow);
+
+				}
+
+			}
+
+			jTable3.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+
+	}
+
+	private void retrieveTable4() {
+
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idPRODUCTO` AS ID, nombreProducto AS Producto, valorUnit AS Precio, cantidadStock AS 'En Stock' FROM `PRODUCTO` WHERE `nombreProducto` = '" + nameProduct.getText() + "';");
+			System.out.println("SELECT `idPRODUCTO` AS ID, nombreProducto AS Producto, valorUnit AS Precio, cantidadStock AS 'En Stock' FROM `PRODUCTO` WHERE `nombreProducto` = 'Weed';");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 0 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 1 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			jTable4.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+
+	}
+
 
 	private void retrieveTable5() {
 
@@ -1133,24 +1383,24 @@ public class StaffMain extends javax.swing.JFrame {
 
 
 	private void TypeEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeEditActionPerformed
-            setFalse(panelsE,tablesE);
-            option = this.TypeEdit.getSelectedIndex();
-            if(option==0){
+		setFalse(panelsE,tablesE);
+		option = this.TypeEdit.getSelectedIndex();
+		if(option==0){
 
-            }else{
-                tablesE[option].setVisible(true);
-                panelsE[option].setVisible(true);
-                panelsE[option].setBackground(new Color(255,255,255,85));
-                panelsE[option].requestFocus();
-            }
-            switch (option){
-            case 1:
-                    editUser();
-                    break;
-            case 2:
-                    editProduct();
-                    break;
-            }
+		}else{
+			tablesE[option].setVisible(true);
+			panelsE[option].setVisible(true);
+			panelsE[option].setBackground(new Color(255,255,255,85));
+			panelsE[option].requestFocus();
+		}
+		switch (option){
+		case 1:
+			editUser();
+			break;
+		case 2:
+			editProduct();
+			break;
+		}
 	}//GEN-LAST:event_TypeEditActionPerformed
 
 	private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
@@ -1210,7 +1460,7 @@ public class StaffMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_nameProductActionPerformed
 
 	private void find1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find1ActionPerformed
-            tablesD[option].setVisible(true);
+		tablesD[option].setVisible(true);
 	}//GEN-LAST:event_find1ActionPerformed
 
 	private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
@@ -1222,7 +1472,7 @@ public class StaffMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_deleteActionPerformed
 
 	private void findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findActionPerformed
-            tablesD[option].setVisible(true);
+		tablesD[option].setVisible(true);
 	}//GEN-LAST:event_findActionPerformed
 
 	private void emailnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailnameActionPerformed

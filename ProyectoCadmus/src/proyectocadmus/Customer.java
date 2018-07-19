@@ -6,7 +6,12 @@
 package proyectocadmus;
 
 import com.placeholder.PlaceHolder;
+
+import conexion.JDBC;
+
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -79,6 +84,35 @@ public class Customer extends javax.swing.JFrame {
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginActionPerformed(evt);
+                /*
+                System.out.println("Login Button Pressed");
+                
+                if(!username.getText().equals("")){
+                	
+                	conexion.openConection();
+                	
+					try {
+						
+						conexion.setStmt(conexion.getConn().createStatement());
+						ResultSet rs = conexion.getStmt().executeQuery("SELECT * FROM `CLIENTE` WHERE id = '" + username.getText() + "' AND `password` = '" + password.getText() + "';");
+						System.out.println("SELECT * FROM `CLIENTE` WHERE id = '" + username.getText() + "' AND `password` = '" + password.getText() + "';");
+						
+						if (rs.isBeforeFirst() ) {    
+						     
+							//boolean 
+							
+						} else
+							System.out.println("Wrong User or password");
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+
+                	
+                }*/
+                
             }
         });
         log.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 350, 45));
@@ -182,5 +216,7 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JTextField password;
     private javax.swing.JLabel user;
     private javax.swing.JTextField username;
+    
+    private JDBC conexion = new JDBC();
     // End of variables declaration//GEN-END:variables
 }
