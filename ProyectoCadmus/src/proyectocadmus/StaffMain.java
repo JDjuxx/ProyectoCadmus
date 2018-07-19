@@ -6,7 +6,16 @@
 package proyectocadmus;
 
 import com.placeholder.PlaceHolder;
+
+import conexion.JDBC;
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
@@ -313,12 +322,76 @@ public class StaffMain extends javax.swing.JFrame {
         });
         userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 350, 45));
 
+        conexion.openConection();
 
-        province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
+		System.out.println("Creating statement");
+		
+		try {
+			
+			conexion.setStmt(conexion.getConn().createStatement());
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT estado FROM `LUGARGEO` WHERE estado IS NOT NULL;");
+			System.out.println("Statement: SELECT estado FROM `LUGARGEO` WHERE estado IS NOT NULL;");
+			list.add("Seleccione una opcion");
+			
+			while(rs.next()) {
+				
+				String estado = rs.getString("estado");
+				list.add(estado);
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		conexion.closeConection();
+		
+        province.setModel(new DefaultComboBoxModel<String>(new Vector<String>(list)));
+        province.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 
-        method.fetchProvince();
-        province.setModel(new DefaultComboBoxModel<String>(new Vector<String>(method.getList())));
-        //province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
+				conexion.openConection();
+
+				System.out.println("Creating statement");
+
+				try {
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					ResultSet rs = conexion.getStmt().executeQuery("SELECT idlugargeo from `LUGARGEO` WHERE estado = '" + province.getSelectedItem().toString() + "';");
+					System.out.println("SELECT idlugargeo from `LUGARGEO` WHERE estado = '" + province.getSelectedItem().toString() + "';");
+					rs.next();
+					String idLUGARGEO = rs.getString("idLUGARGEO");
+					
+					rs = conexion.getStmt().executeQuery("SELECT pueblo FROM `LUGARGEO` WHERE `LUGARGEO_idLUGARGEO` = " + idLUGARGEO + ";");
+					System.out.println("SELECT pueblo FROM `LUGARGEO` WHERE `LUGARGEO_idLUGARGEO` = " + idLUGARGEO + ";");
+					
+					list.clear();
+					list.add("Seleccione una opcion");
+
+					while(rs.next()) {
+
+						String pueblo = rs.getString("pueblo");
+						list.add(pueblo);
+
+					}
+
+					canton.setModel(new DefaultComboBoxModel<String>(new Vector<String>(list)));
+
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				conexion.closeConection();
+
+			}
+		});
+        
         userdata.add(province, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 210, 30));
 
         canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
@@ -1062,6 +1135,7 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTextField username;
     private javax.swing.JTextField value;
     
-    private MysqlMethods method = new MysqlMethods();
+    private JDBC conexion = new JDBC();
+	private List<String> list = new LinkedList<String>();
     // End of variables declaration//GEN-END:variables
 }

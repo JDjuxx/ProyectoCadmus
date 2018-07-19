@@ -9,7 +9,7 @@ public class JDBC {
 	// JDBC driver name and database URL
 
 	static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-	static final String DB_URL = "jdbc:mariadb://192.168.1.6:3306/proyecto_v3";
+	static final String DB_URL = "jdbc:mariadb://localhost/proyecto_v3";
 
 	//  Database credentials
 	static final String USER = "root";
