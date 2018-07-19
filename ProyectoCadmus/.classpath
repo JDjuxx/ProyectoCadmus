@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/home/tkhacker/git/ProyectoCadmus/1479947884_PlaceHolder/PlaceHolder.jar"/>
 	<classpathentry kind="lib" path="/home/tkhacker/git/ProyectoCadmus/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="/home/tkhacker/git/ProyectoCadmus/mariadb-java-client-2.2.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

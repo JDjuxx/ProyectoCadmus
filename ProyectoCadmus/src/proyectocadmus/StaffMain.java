@@ -7,6 +7,9 @@ package proyectocadmus;
 
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
+import java.util.Vector;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -293,7 +296,12 @@ public class StaffMain extends javax.swing.JFrame {
         });
         userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 350, 45));
 
+
         province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
+
+        method.fetchProvince();
+        province.setModel(new DefaultComboBoxModel<String>(new Vector<String>(method.getList())));
+        //province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
         userdata.add(province, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 210, 30));
 
         canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
