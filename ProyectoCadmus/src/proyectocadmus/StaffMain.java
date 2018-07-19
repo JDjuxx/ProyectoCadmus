@@ -51,7 +51,7 @@ public class StaffMain extends javax.swing.JFrame {
 		filltableD();
 		filltableE();
 		setFalse(panels,tables);
-		setFalse(panelsD,tablesD);
+		setFalse(panelsD,tablesD);	
 		setFalse(panelsE,tablesE);
 
 	}
