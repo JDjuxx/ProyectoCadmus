@@ -338,7 +338,6 @@ public class StaffMain extends javax.swing.JFrame {
 						rs.next();
 						String idLUGARGEO = rs.getString("idLUGARGEO");
 
-
 						conexion.setStmt(conexion.getConn().createStatement());
 						rs = conexion.getStmt().executeQuery("INSERT INTO `LUGARGEO` (direccion, `LUGARGEO_idLUGARGEO`) VALUES ('" + address.getText() + "', " + idLUGARGEO + ");");
 						System.out.println("INSERT INTO `LUGARGEO` (direccion, `LUGARGEO_idLUGARGEO`) VALUES ('" + address.getText() + "', " + idLUGARGEO + ");");
