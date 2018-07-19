@@ -9,6 +9,7 @@ import com.placeholder.PlaceHolder;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -17,24 +18,33 @@ import javax.swing.JPanel;
 public class StaffMain extends javax.swing.JFrame {
     int option;
     JPanel panels[] = new JPanel[3];
+    JScrollPane tables[] = new JScrollPane[3];
     
     /**
      * Creates new form StaffMain
      */
     public StaffMain() {
         initComponents();
-        fillarray();
+        fillpanel();
+        filltable();
         setFalse();
     }
     
     public void setFalse(){
-        for(int i=1;i<panels.length;i++)
+        for(int i=1;i<panels.length;i++){
             panels[i].setVisible(false);
+            tables[i].setVisible(false);
+        }
     }
     
-    public void fillarray(){
+    public void fillpanel(){
         panels[1]=this.userdata;
         panels[2]=this.productdata;
+    }
+    
+    public void filltable(){
+        tables[1]=this.userTable;
+        tables[2]=this.productTable;
     }
     
     public void user(){
@@ -90,6 +100,10 @@ public class StaffMain extends javax.swing.JFrame {
         login1 = new javax.swing.JButton();
         value = new javax.swing.JTextField();
         quantity = new javax.swing.JTextField();
+        productTable = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        userTable = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         bginsert = new javax.swing.JLabel();
         eliminar = new javax.swing.JPanel();
         TypeDelete = new javax.swing.JComboBox<>();
@@ -267,7 +281,41 @@ public class StaffMain extends javax.swing.JFrame {
         });
         productdata.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 350, 50));
 
-        insertar.add(productdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 430, 310));
+        insertar.add(productdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 430, 310));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        productTable.setViewportView(jTable2);
+
+        insertar.add(productTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        userTable.setViewportView(jTable1);
+
+        insertar.add(userTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
         bginsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
         insertar.add(bginsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 1400, 940));
@@ -312,6 +360,7 @@ public class StaffMain extends javax.swing.JFrame {
     private void TypeInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeInsertActionPerformed
         setFalse();
         option = this.TypeInsert.getSelectedIndex();
+        tables[option].setVisible(true);
         panels[option].setVisible(true);
         panels[option].setBackground(new Color(255,255,255,85));
         panels[option].requestFocus();
@@ -435,6 +484,8 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTextField email;
     private javax.swing.JPanel insertar;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JButton login;
     private javax.swing.JButton login1;
     private javax.swing.JTextField name;
@@ -448,11 +499,13 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTextField password;
     private javax.swing.JTextField phone;
     private javax.swing.JTextField product;
+    private javax.swing.JScrollPane productTable;
     private javax.swing.JPanel productdata;
     private javax.swing.JComboBox<String> province;
     private javax.swing.JTextField quantity;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user1;
+    private javax.swing.JScrollPane userTable;
     private javax.swing.JPanel userdata;
     private javax.swing.JTextField username;
     private javax.swing.JTextField value;
