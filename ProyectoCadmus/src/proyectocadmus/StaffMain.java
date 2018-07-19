@@ -103,11 +103,14 @@ public class StaffMain extends javax.swing.JFrame {
             PlaceHolder holder6 = new PlaceHolder(address,"Address");
 	}
         
-        public void clean(){
+        public void cleanU(){
             username.setText("");
+            password.setText("");
             name.setText("");
-            user();
-            
+            phone.setText("");
+            email.setText("");
+            address.setText("");
+            user();       
         }
 
 	public void product(){
@@ -115,22 +118,48 @@ public class StaffMain extends javax.swing.JFrame {
             PlaceHolder holder2 = new PlaceHolder(value,"Value");
             PlaceHolder holder3 = new PlaceHolder(quantity,"Quantity");
 	}
+        
+        public void cleanP(){
+            product.setText("");
+            value.setText("");
+            quantity.setText("");
+        }
 
 	public void deleteUser(){
             PlaceHolder holder1 = new PlaceHolder(emailname,"Username o Email");
 	}
+        
+        public void cleanDu(){
+            emailname.setText("");
+            deleteUser();
+        }
 
 	public void deleteProduct(){
 		PlaceHolder holder1 = new PlaceHolder(nameProduct,"Product Name");
 	}
 
+        public void celanDp(){
+            nameProduct.setText("");
+            deleteProduct();
+        }
+        
 	public void editUser(){
 		PlaceHolder holder1 = new PlaceHolder(editT,"Edition's Value");
 	}
+        
+        public void cleanEu(){
+            editT.setText("");
+            editUser();
+        }
 
 	public void editProduct(){
 		PlaceHolder holder1 = new PlaceHolder(textE,"Edition's Value");
 	}
+        
+        public void cleanEp(){
+            textE.setText("");
+            editProduct();
+        }
 
 	public void logOut(){
 		Staff staff = new Staff();
@@ -1065,7 +1094,7 @@ public class StaffMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_TypeInsertActionPerformed
 
 	private void TypeDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeDeleteActionPerformed
-		clean();
+
                 setFalse(panelsD,tablesD);
 		option = this.TypeDelete.getSelectedIndex();
 		if(option==0){
