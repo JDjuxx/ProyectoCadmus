@@ -19,8 +19,10 @@ public class StaffMain extends javax.swing.JFrame {
     int option;
     JPanel panels[] = new JPanel[3];
     JPanel panelsD[] = new JPanel[3];
+    JPanel panelsE[] = new JPanel[3];
     JScrollPane tables[] = new JScrollPane[3];
     JScrollPane tablesD[] = new JScrollPane[3];
+    JScrollPane tablesE[] = new JScrollPane[3];
     
     /**
      * Creates new form StaffMain
@@ -29,10 +31,13 @@ public class StaffMain extends javax.swing.JFrame {
         initComponents();
         fillpanelD();
         fillpanel();
+        fillpanelE();
         filltable();
         filltableD();
+        filltableE();
         setFalse(panels,tables);
         setFalse(panelsD,tablesD);
+        setFalse(panelsE,tablesE);
         
     }
     
@@ -42,6 +47,17 @@ public class StaffMain extends javax.swing.JFrame {
             t[i].setVisible(false);
         }
     }
+    
+    public void fillpanelE(){
+        panelsE[1]=this.editP;
+        panelsE[2]=this.editU;
+    }
+    
+    public void filltableE(){
+        tablesE[1]=this.userE;
+        tablesE[2]=this.productE;
+    }
+    
     
     public void fillpanelD(){
         panelsD[1]=this.deleteUser;
@@ -84,6 +100,14 @@ public class StaffMain extends javax.swing.JFrame {
     
     public void deleteProduct(){
         PlaceHolder holder1 = new PlaceHolder(nameProduct,"Product Name");
+    }
+    
+    public void editUser(){
+        PlaceHolder holder1 = new PlaceHolder(editT,"Edition's Value");
+    }
+    
+    public void editProduct(){
+        PlaceHolder holder1 = new PlaceHolder(textE,"Edition's Value");
     }
 
     /**
@@ -149,6 +173,20 @@ public class StaffMain extends javax.swing.JFrame {
         bgdelete = new javax.swing.JLabel();
         editar = new javax.swing.JPanel();
         TypeEdit = new javax.swing.JComboBox<>();
+        editP = new javax.swing.JPanel();
+        padlock12 = new javax.swing.JLabel();
+        padlock13 = new javax.swing.JLabel();
+        editT = new javax.swing.JTextField();
+        editProduct = new javax.swing.JButton();
+        editU = new javax.swing.JPanel();
+        padlock15 = new javax.swing.JLabel();
+        padlock16 = new javax.swing.JLabel();
+        textE = new javax.swing.JTextField();
+        editUser = new javax.swing.JButton();
+        userE = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        productE = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
         bgedit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -255,7 +293,6 @@ public class StaffMain extends javax.swing.JFrame {
         });
         userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 350, 45));
 
-        method.fetchProvince();
         province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
         userdata.add(province, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 210, 30));
 
@@ -517,13 +554,118 @@ public class StaffMain extends javax.swing.JFrame {
 
         editar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TypeEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoger Opción...", "Usuario\t", "Producto\t", "Pedido", " " }));
+        TypeEdit.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        TypeEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoger Opción...", "Usuario\t", "Producto\t", " ", " " }));
         TypeEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TypeEditActionPerformed(evt);
             }
         });
-        editar.add(TypeEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        editar.add(TypeEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 40));
+
+        editP.setBackground(new java.awt.Color(255, 255, 255));
+        editP.setForeground(new java.awt.Color(255, 255, 255));
+        editP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        padlock12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/productE.png"))); // NOI18N
+        editP.add(padlock12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+
+        padlock13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        editP.add(padlock13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
+
+        editT.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
+        editT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editTActionPerformed(evt);
+            }
+        });
+        editP.add(editT, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 350, 50));
+
+        editProduct.setBackground(new java.awt.Color(9, 20, 104));
+        editProduct.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        editProduct.setForeground(new java.awt.Color(255, 255, 255));
+        editProduct.setText("UPDATE");
+        editProduct.setAlignmentY(0.0F);
+        editProduct.setContentAreaFilled(false);
+        editProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProductActionPerformed(evt);
+            }
+        });
+        editP.add(editProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
+
+        editar.add(editP, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 430, 260));
+
+        editU.setBackground(new java.awt.Color(255, 255, 255));
+        editU.setForeground(new java.awt.Color(255, 255, 255));
+        editU.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        padlock15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editUser.png"))); // NOI18N
+        editU.add(padlock15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+
+        padlock16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        editU.add(padlock16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
+
+        textE.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
+        textE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textEActionPerformed(evt);
+            }
+        });
+        editU.add(textE, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 350, 50));
+
+        editUser.setBackground(new java.awt.Color(9, 20, 104));
+        editUser.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        editUser.setForeground(new java.awt.Color(255, 255, 255));
+        editUser.setText("UPDATE");
+        editUser.setAlignmentY(0.0F);
+        editUser.setContentAreaFilled(false);
+        editUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editUserActionPerformed(evt);
+            }
+        });
+        editU.add(editUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
+
+        editar.add(editU, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 430, 260));
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        userE.setViewportView(jTable5);
+
+        editar.add(userE, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        productE.setViewportView(jTable6);
+
+        editar.add(productE, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
         bgedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
         editar.add(bgedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -570,7 +712,20 @@ public class StaffMain extends javax.swing.JFrame {
     }//GEN-LAST:event_TypeDeleteActionPerformed
 
     private void TypeEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeEditActionPerformed
-        // TODO add your handling code here:
+        setFalse(panelsE,tablesE);
+        option = this.TypeEdit.getSelectedIndex();
+        tablesE[option].setVisible(true);
+        panelsE[option].setVisible(true);
+        panelsE[option].setBackground(new Color(255,255,255,85));
+        panelsE[option].requestFocus();
+        switch (option){
+            case 1:
+                editUser();
+                break;
+            case 2:
+                editProduct();
+                break;
+        }
     }//GEN-LAST:event_TypeEditActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
@@ -649,6 +804,22 @@ public class StaffMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailnameActionPerformed
 
+    private void editTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editTActionPerformed
+
+    private void editProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editProductActionPerformed
+
+    private void textEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textEActionPerformed
+
+    private void editUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editUserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -697,6 +868,11 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JButton delete1;
     private javax.swing.JPanel deleteProduct;
     private javax.swing.JPanel deleteUser;
+    private javax.swing.JPanel editP;
+    private javax.swing.JButton editProduct;
+    private javax.swing.JTextField editT;
+    private javax.swing.JPanel editU;
+    private javax.swing.JButton editUser;
     private javax.swing.JPanel editar;
     private javax.swing.JPanel eliminar;
     private javax.swing.JTextField email;
@@ -709,6 +885,8 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
     private javax.swing.JButton login;
     private javax.swing.JButton login1;
     private javax.swing.JTextField name;
@@ -717,6 +895,10 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JLabel padlock1;
     private javax.swing.JLabel padlock10;
     private javax.swing.JLabel padlock11;
+    private javax.swing.JLabel padlock12;
+    private javax.swing.JLabel padlock13;
+    private javax.swing.JLabel padlock15;
+    private javax.swing.JLabel padlock16;
     private javax.swing.JLabel padlock2;
     private javax.swing.JLabel padlock3;
     private javax.swing.JLabel padlock4;
@@ -728,19 +910,20 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTextField password;
     private javax.swing.JTextField phone;
     private javax.swing.JTextField product;
+    private javax.swing.JScrollPane productE;
     private javax.swing.JScrollPane productT;
     private javax.swing.JScrollPane productTable;
     private javax.swing.JPanel productdata;
     private javax.swing.JComboBox<String> province;
     private javax.swing.JTextField quantity;
+    private javax.swing.JTextField textE;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user1;
+    private javax.swing.JScrollPane userE;
     private javax.swing.JScrollPane userT;
     private javax.swing.JScrollPane userTable;
     private javax.swing.JPanel userdata;
     private javax.swing.JTextField username;
     private javax.swing.JTextField value;
-    
-    private MysqlMethods method = new MysqlMethods();
     // End of variables declaration//GEN-END:variables
 }

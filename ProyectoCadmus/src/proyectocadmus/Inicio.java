@@ -56,7 +56,7 @@ public class Inicio extends javax.swing.JFrame {
 
         Stlog.setBackground(new java.awt.Color(255, 255, 255));
         Stlog.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
-        Stlog.setText("Stuff Log In");
+        Stlog.setText("Staff Log In");
         Stlog.setToolTipText("");
         Stlog.setAlignmentY(0.0F);
         Stlog.setBorderPainted(false);
