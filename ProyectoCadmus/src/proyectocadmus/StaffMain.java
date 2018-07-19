@@ -255,6 +255,7 @@ public class StaffMain extends javax.swing.JFrame {
         });
         userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 350, 45));
 
+        method.fetchProvince();
         province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
         userdata.add(province, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 210, 30));
 
@@ -739,5 +740,7 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JPanel userdata;
     private javax.swing.JTextField username;
     private javax.swing.JTextField value;
+    
+    private MysqlMethods method = new MysqlMethods();
     // End of variables declaration//GEN-END:variables
 }
