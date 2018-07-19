@@ -1061,5 +1061,7 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JPanel userdata;
     private javax.swing.JTextField username;
     private javax.swing.JTextField value;
+    
+    private MysqlMethods method = new MysqlMethods();
     // End of variables declaration//GEN-END:variables
 }
