@@ -47,6 +47,11 @@ public class CustomerMain extends javax.swing.JFrame {
         FIND.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupa.png"))); // NOI18N
         FIND.setBorder(null);
         FIND.setBorderPainted(false);
+        FIND.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FINDActionPerformed(evt);
+            }
+        });
         getContentPane().add(FIND, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 20, 70, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -65,14 +70,29 @@ public class CustomerMain extends javax.swing.JFrame {
         getContentPane().add(finderT, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 900, 520));
 
         quantity.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        quantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quantityActionPerformed(evt);
+            }
+        });
         getContentPane().add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 700, 170, 40));
 
         add.setBackground(new java.awt.Color(255, 255, 255));
         add.setText("CART");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
         getContentPane().add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 700, 100, 40));
 
         checkOut.setBackground(new java.awt.Color(255, 255, 255));
         checkOut.setText("CHECK OUT");
+        checkOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkOutActionPerformed(evt);
+            }
+        });
         getContentPane().add(checkOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 700, 140, 50));
 
         bgOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bg2.jpg"))); // NOI18N
@@ -80,6 +100,24 @@ public class CustomerMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void checkOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutActionPerformed
+        Bill bill = new Bill();
+        bill.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_checkOutActionPerformed
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addActionPerformed
+
+    private void FINDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FINDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FINDActionPerformed
+
+    private void quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quantityActionPerformed
 
     /**
      * @param args the command line arguments

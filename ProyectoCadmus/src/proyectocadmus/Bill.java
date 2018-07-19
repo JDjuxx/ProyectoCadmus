@@ -5,6 +5,8 @@
  */
 package proyectocadmus;
 
+import java.awt.Color;
+
 /**
  *
  * @author renatasanandres
@@ -16,6 +18,7 @@ public class Bill extends javax.swing.JFrame {
      */
     public Bill() {
         initComponents();
+        bill.setBackground(new Color(255,255,255,150));
     }
 
     /**
@@ -27,18 +30,33 @@ public class Bill extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        bill = new javax.swing.JPanel();
+        bgOrder = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bill2.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+
+        bill.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout billLayout = new javax.swing.GroupLayout(bill);
+        bill.setLayout(billLayout);
+        billLayout.setHorizontalGroup(
+            billLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        billLayout.setVerticalGroup(
+            billLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
+
+        getContentPane().add(bill, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 460, 620));
+
+        bgOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bg2.jpg"))); // NOI18N
+        getContentPane().add(bgOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 800));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -80,5 +98,8 @@ public class Bill extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bgOrder;
+    private javax.swing.JPanel bill;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
