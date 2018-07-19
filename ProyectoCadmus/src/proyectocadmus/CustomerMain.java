@@ -16,6 +16,7 @@ public class CustomerMain extends javax.swing.JFrame {
      */
     public CustomerMain() {
         initComponents();
+        
     }
 
     /**
@@ -29,6 +30,11 @@ public class CustomerMain extends javax.swing.JFrame {
 
         finder = new javax.swing.JTextField();
         FIND = new javax.swing.JButton();
+        finderT = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        quantity = new javax.swing.JTextField();
+        add = new javax.swing.JButton();
+        checkOut = new javax.swing.JButton();
         bgOrder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,6 +48,32 @@ public class CustomerMain extends javax.swing.JFrame {
         FIND.setBorder(null);
         FIND.setBorderPainted(false);
         getContentPane().add(FIND, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 20, 70, 50));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        finderT.setViewportView(jTable1);
+
+        getContentPane().add(finderT, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 900, 520));
+
+        quantity.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        getContentPane().add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 700, 170, 40));
+
+        add.setBackground(new java.awt.Color(255, 255, 255));
+        add.setText("CART");
+        getContentPane().add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 700, 100, 40));
+
+        checkOut.setBackground(new java.awt.Color(255, 255, 255));
+        checkOut.setText("CHECK OUT");
+        getContentPane().add(checkOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 700, 140, 50));
 
         bgOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bg2.jpg"))); // NOI18N
         getContentPane().add(bgOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 800));
@@ -86,7 +118,12 @@ public class CustomerMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton FIND;
+    private javax.swing.JButton add;
     private javax.swing.JLabel bgOrder;
+    private javax.swing.JButton checkOut;
     private javax.swing.JTextField finder;
+    private javax.swing.JScrollPane finderT;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField quantity;
     // End of variables declaration//GEN-END:variables
 }

@@ -95,22 +95,29 @@ public class StaffMain extends javax.swing.JFrame {
 	}
 
 	public void user(){
-		PlaceHolder holder1 = new PlaceHolder(username,"Username");
-		PlaceHolder holder2 = new PlaceHolder(password,"Password");
-		PlaceHolder holder3 = new PlaceHolder(phone,"Phone");
-		PlaceHolder holder4 = new PlaceHolder(name,"Name");
-		PlaceHolder holder5 = new PlaceHolder(email,"Email");
-		PlaceHolder holder6 = new PlaceHolder(address,"Address");
+            PlaceHolder holder1 = new PlaceHolder(username,"Username");
+            PlaceHolder holder2 = new PlaceHolder(password,"Password");
+            PlaceHolder holder3 = new PlaceHolder(phone,"Phone");
+            PlaceHolder holder4 = new PlaceHolder(name,"Name");
+            PlaceHolder holder5 = new PlaceHolder(email,"Email");
+            PlaceHolder holder6 = new PlaceHolder(address,"Address");
 	}
+        
+        public void clean(){
+            username.setText("");
+            name.setText("");
+            user();
+            
+        }
 
 	public void product(){
-		PlaceHolder holder1 = new PlaceHolder(product,"Name Product");
-		PlaceHolder holder2 = new PlaceHolder(value,"Value");
-		PlaceHolder holder3 = new PlaceHolder(quantity,"Quantity");
+            PlaceHolder holder1 = new PlaceHolder(product,"Name Product");
+            PlaceHolder holder2 = new PlaceHolder(value,"Value");
+            PlaceHolder holder3 = new PlaceHolder(quantity,"Quantity");
 	}
 
 	public void deleteUser(){
-		PlaceHolder holder1 = new PlaceHolder(emailname,"Username o Email");
+            PlaceHolder holder1 = new PlaceHolder(emailname,"Username o Email");
 	}
 
 	public void deleteProduct(){
@@ -1058,7 +1065,8 @@ public class StaffMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_TypeInsertActionPerformed
 
 	private void TypeDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeDeleteActionPerformed
-		setFalse(panelsD,tablesD);
+		clean();
+                setFalse(panelsD,tablesD);
 		option = this.TypeDelete.getSelectedIndex();
 		if(option==0){
 
@@ -1408,7 +1416,7 @@ public class StaffMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_passwordActionPerformed
 
 	private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-
+            
 	}//GEN-LAST:event_loginActionPerformed
 
 	private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
