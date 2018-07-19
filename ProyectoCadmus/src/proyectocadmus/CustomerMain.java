@@ -28,17 +28,20 @@ public class CustomerMain extends javax.swing.JFrame {
     private void initComponents() {
 
         finder = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        FIND = new javax.swing.JButton();
         bgOrder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         finder.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        getContentPane().add(finder, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 20, 550, 50));
+        getContentPane().add(finder, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 550, 50));
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 70, 50));
+        FIND.setBackground(new java.awt.Color(255, 255, 255));
+        FIND.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupa.png"))); // NOI18N
+        FIND.setBorder(null);
+        FIND.setBorderPainted(false);
+        getContentPane().add(FIND, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 20, 70, 50));
 
         bgOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bg2.jpg"))); // NOI18N
         getContentPane().add(bgOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 800));
@@ -82,8 +85,8 @@ public class CustomerMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton FIND;
     private javax.swing.JLabel bgOrder;
     private javax.swing.JTextField finder;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
