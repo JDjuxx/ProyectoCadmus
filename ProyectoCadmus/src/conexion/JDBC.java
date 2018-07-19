@@ -9,10 +9,10 @@ public class JDBC {
 	// JDBC driver name and database URL
 
 	static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-	static final String DB_URL = "jdbc:mariadb://localhost/proyecto_v3";
+	static final String DB_URL = "jdbc:mariadb://172.29.65.138:3306/proyecto_v3";
 
 	//  Database credentials
-	static final String USER = "root";
+	static final String USER = "JDjuxx";
 	static final String PASS = "";
 	Connection conn = null;
 	Statement stmt = null;
@@ -25,7 +25,7 @@ public class JDBC {
 			//STEP 3: Open a connection
 			System.out.println("Connecting to a selected database");
 			conn = DriverManager.getConnection(
-					DB_URL, "root", "");
+					DB_URL, USER, "");
 			System.out.println("Connected database successfully");
 
 		}catch (SQLException se) {

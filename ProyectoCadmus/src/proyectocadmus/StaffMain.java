@@ -1001,10 +1001,14 @@ public class StaffMain extends javax.swing.JFrame {
 	private void TypeInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeInsertActionPerformed
 		setFalse(panels,tables);
 		option = this.TypeInsert.getSelectedIndex();
-		tables[option].setVisible(true);
-		panels[option].setVisible(true);
-		panels[option].setBackground(new Color(255,255,255,85));
-		panels[option].requestFocus();
+                if(option==0){
+                 
+                }else{
+                    tables[option].setVisible(true);
+                    panels[option].setVisible(true);
+                    panels[option].setBackground(new Color(255,255,255,85));
+                    panels[option].requestFocus();
+                }
 		switch (option){
 		case 1:
 			user();
@@ -1019,9 +1023,13 @@ public class StaffMain extends javax.swing.JFrame {
 	private void TypeDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeDeleteActionPerformed
 		setFalse(panelsD,tablesD);
 		option = this.TypeDelete.getSelectedIndex();
-		panelsD[option].setVisible(true);
-		panelsD[option].setBackground(new Color(255,255,255,85));
-		panelsD[option].requestFocus();
+                if(option==0){
+                 
+                }else{
+                    panelsD[option].setVisible(true);
+                    panelsD[option].setBackground(new Color(255,255,255,85));
+                    panelsD[option].requestFocus();
+                }
 		switch (option){
 		case 1:
 			deleteUser();
@@ -1126,20 +1134,24 @@ public class StaffMain extends javax.swing.JFrame {
 
 
 	private void TypeEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeEditActionPerformed
-		setFalse(panelsE,tablesE);
-		option = this.TypeEdit.getSelectedIndex();
-		tablesE[option].setVisible(true);
-		panelsE[option].setVisible(true);
-		panelsE[option].setBackground(new Color(255,255,255,85));
-		panelsE[option].requestFocus();
-		switch (option){
-		case 1:
-			editUser();
-			break;
-		case 2:
-			editProduct();
-			break;
-		}
+            setFalse(panelsE,tablesE);
+            option = this.TypeEdit.getSelectedIndex();
+            if(option==0){
+
+            }else{
+                tablesE[option].setVisible(true);
+                panelsE[option].setVisible(true);
+                panelsE[option].setBackground(new Color(255,255,255,85));
+                panelsE[option].requestFocus();
+            }
+            switch (option){
+            case 1:
+                    editUser();
+                    break;
+            case 2:
+                    editProduct();
+                    break;
+            }
 	}//GEN-LAST:event_TypeEditActionPerformed
 
 	private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
@@ -1199,7 +1211,7 @@ public class StaffMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_nameProductActionPerformed
 
 	private void find1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find1ActionPerformed
-		// TODO add your handling code here:
+            tablesD[option].setVisible(true);
 	}//GEN-LAST:event_find1ActionPerformed
 
 	private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
@@ -1211,7 +1223,7 @@ public class StaffMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_deleteActionPerformed
 
 	private void findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findActionPerformed
-		// TODO add your handling code here:
+            tablesD[option].setVisible(true);
 	}//GEN-LAST:event_findActionPerformed
 
 	private void emailnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailnameActionPerformed
