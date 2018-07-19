@@ -41,6 +41,7 @@ public class Customer extends javax.swing.JFrame {
         password = new javax.swing.JTextField();
         login = new javax.swing.JButton();
         username = new javax.swing.JTextField();
+        home = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,8 +72,6 @@ public class Customer extends javax.swing.JFrame {
         login.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
         login.setForeground(new java.awt.Color(255, 255, 255));
         login.setAlignmentY(0.0F);
-        login.setBorder(null);
-        login.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         login.setContentAreaFilled(false);
         login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         login.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -99,6 +98,17 @@ public class Customer extends javax.swing.JFrame {
 
         getContentPane().add(log, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 200, 430, 370));
 
+        home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow.png"))); // NOI18N
+        home.setBorder(null);
+        home.setBorderPainted(false);
+        home.setContentAreaFilled(false);
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 90));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background-login.jpg"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1260, 770));
 
@@ -120,6 +130,12 @@ public class Customer extends javax.swing.JFrame {
     private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFocusLost
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_homeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +174,7 @@ public class Customer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JButton home;
     private javax.swing.JPanel log;
     private javax.swing.JLabel loger;
     private javax.swing.JButton login;
