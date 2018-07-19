@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class StaffMain extends javax.swing.JFrame {
     int option;
-    JPanel panels[] = new JPanel[4];
+    JPanel panels[] = new JPanel[3];
     
     /**
      * Creates new form StaffMain
@@ -35,7 +35,6 @@ public class StaffMain extends javax.swing.JFrame {
     public void fillarray(){
         panels[1]=this.userdata;
         panels[2]=this.productdata;
-        panels[3]=this.orderdata;
     }
     
     public void user(){
@@ -43,7 +42,8 @@ public class StaffMain extends javax.swing.JFrame {
         PlaceHolder holder2 = new PlaceHolder(password,"Password");
         PlaceHolder holder3 = new PlaceHolder(phone,"Phone");
         PlaceHolder holder4 = new PlaceHolder(name,"Name");
-        PlaceHolder holder5 = new PlaceHolder(address,"Address");
+        PlaceHolder holder5 = new PlaceHolder(email,"Email");
+        PlaceHolder holder6 = new PlaceHolder(address,"Address");
     }
     
     public void product(){
@@ -72,22 +72,17 @@ public class StaffMain extends javax.swing.JFrame {
         padlock3 = new javax.swing.JLabel();
         padlock4 = new javax.swing.JLabel();
         padlock5 = new javax.swing.JLabel();
+        padlock7 = new javax.swing.JLabel();
         password = new javax.swing.JTextField();
         username = new javax.swing.JTextField();
         phone = new javax.swing.JTextField();
         name = new javax.swing.JTextField();
         address = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         login = new javax.swing.JButton();
+        province = new javax.swing.JComboBox<>();
+        canton = new javax.swing.JComboBox<>();
         bginsert = new javax.swing.JLabel();
-        orderdata = new javax.swing.JPanel();
-        user2 = new javax.swing.JLabel();
-        padlock2 = new javax.swing.JLabel();
-        password8 = new javax.swing.JTextField();
-        login2 = new javax.swing.JButton();
-        username2 = new javax.swing.JTextField();
-        password9 = new javax.swing.JTextField();
-        password10 = new javax.swing.JTextField();
-        password11 = new javax.swing.JTextField();
         productdata = new javax.swing.JPanel();
         user1 = new javax.swing.JLabel();
         padlock1 = new javax.swing.JLabel();
@@ -134,7 +129,10 @@ public class StaffMain extends javax.swing.JFrame {
         userdata.add(padlock4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, -1));
 
         padlock5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/address.png"))); // NOI18N
-        userdata.add(padlock5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
+        userdata.add(padlock5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, -1, -1));
+
+        padlock7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/email.png"))); // NOI18N
+        userdata.add(padlock7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
 
         password.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
         password.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +177,15 @@ public class StaffMain extends javax.swing.JFrame {
                 addressActionPerformed(evt);
             }
         });
-        userdata.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 350, 50));
+        userdata.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 350, 50));
+
+        email.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+        userdata.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 350, 50));
 
         login.setBackground(new java.awt.Color(9, 20, 104));
         login.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
@@ -194,84 +200,18 @@ public class StaffMain extends javax.swing.JFrame {
                 loginActionPerformed(evt);
             }
         });
-        userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 350, 45));
+        userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 350, 45));
 
-        insertar.add(userdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 430, 480));
+        province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
+        userdata.add(province, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 210, 30));
+
+        canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
+        userdata.add(canton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 150, 30));
+
+        insertar.add(userdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 430, 600));
 
         bginsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
         insertar.add(bginsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 1400, 940));
-
-        orderdata.setBackground(new java.awt.Color(255, 255, 255));
-        orderdata.setForeground(new java.awt.Color(255, 255, 255));
-        orderdata.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        user2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usern.png"))); // NOI18N
-        orderdata.add(user2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 25, 40, 40));
-
-        padlock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/padlocker.png"))); // NOI18N
-        orderdata.add(padlock2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
-
-        password8.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
-        password8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password8ActionPerformed(evt);
-            }
-        });
-        orderdata.add(password8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 350, 50));
-
-        login2.setBackground(new java.awt.Color(9, 20, 104));
-        login2.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
-        login2.setForeground(new java.awt.Color(255, 255, 255));
-        login2.setAlignmentY(0.0F);
-        login2.setContentAreaFilled(false);
-        login2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        login2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        login2.setLabel("LOGIN");
-        login2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login2ActionPerformed(evt);
-            }
-        });
-        orderdata.add(login2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 350, 45));
-
-        username2.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
-        username2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                username2FocusLost(evt);
-            }
-        });
-        username2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                username2ActionPerformed(evt);
-            }
-        });
-        orderdata.add(username2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 350, 50));
-
-        password9.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
-        password9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password9ActionPerformed(evt);
-            }
-        });
-        orderdata.add(password9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 350, 50));
-
-        password10.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
-        password10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password10ActionPerformed(evt);
-            }
-        });
-        orderdata.add(password10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 350, 50));
-
-        password11.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
-        password11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password11ActionPerformed(evt);
-            }
-        });
-        orderdata.add(password11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 350, 50));
-
-        insertar.add(orderdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 430, 480));
 
         productdata.setBackground(new java.awt.Color(255, 255, 255));
         productdata.setForeground(new java.awt.Color(255, 255, 255));
@@ -382,7 +322,6 @@ public class StaffMain extends javax.swing.JFrame {
             case 2:
                 product();
                 break;
-            case 3:
         }
             
     }//GEN-LAST:event_TypeInsertActionPerformed
@@ -439,37 +378,13 @@ public class StaffMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_valueActionPerformed
 
-    private void password8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password8ActionPerformed
-
-    private void login2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_login2ActionPerformed
-
-    private void username2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_username2FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_username2FocusLost
-
-    private void username2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_username2ActionPerformed
-
-    private void password9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password9ActionPerformed
-
-    private void password10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password10ActionPerformed
-
-    private void password11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password11ActionPerformed
-
     private void quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_quantityActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,37 +429,32 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JLabel bgdelete;
     private javax.swing.JLabel bgedit;
     private javax.swing.JLabel bginsert;
+    private javax.swing.JComboBox<String> canton;
     private javax.swing.JPanel editar;
     private javax.swing.JPanel eliminar;
+    private javax.swing.JTextField email;
     private javax.swing.JPanel insertar;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton login;
     private javax.swing.JButton login1;
-    private javax.swing.JButton login2;
     private javax.swing.JTextField name;
-    private javax.swing.JPanel orderdata;
     private javax.swing.JLabel padlock;
     private javax.swing.JLabel padlock1;
-    private javax.swing.JLabel padlock2;
     private javax.swing.JLabel padlock3;
     private javax.swing.JLabel padlock4;
     private javax.swing.JLabel padlock5;
     private javax.swing.JLabel padlock6;
+    private javax.swing.JLabel padlock7;
     private javax.swing.JTextField password;
-    private javax.swing.JTextField password10;
-    private javax.swing.JTextField password11;
-    private javax.swing.JTextField password8;
-    private javax.swing.JTextField password9;
     private javax.swing.JTextField phone;
     private javax.swing.JTextField product;
     private javax.swing.JPanel productdata;
+    private javax.swing.JComboBox<String> province;
     private javax.swing.JTextField quantity;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user1;
-    private javax.swing.JLabel user2;
     private javax.swing.JPanel userdata;
     private javax.swing.JTextField username;
-    private javax.swing.JTextField username2;
     private javax.swing.JTextField value;
     // End of variables declaration//GEN-END:variables
 }
