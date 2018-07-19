@@ -129,18 +129,19 @@ public class StaffMain extends javax.swing.JFrame {
         bginsert = new javax.swing.JLabel();
         eliminar = new javax.swing.JPanel();
         TypeDelete = new javax.swing.JComboBox<>();
-        deleteProduct = new javax.swing.JPanel();
-        padlock9 = new javax.swing.JLabel();
-        padlock10 = new javax.swing.JLabel();
-        nameProduct = new javax.swing.JTextField();
-        find1 = new javax.swing.JButton();
-        delete1 = new javax.swing.JButton();
         deleteUser = new javax.swing.JPanel();
         padlock2 = new javax.swing.JLabel();
         padlock8 = new javax.swing.JLabel();
+        padlock9 = new javax.swing.JLabel();
         emailname = new javax.swing.JTextField();
         find = new javax.swing.JButton();
         delete = new javax.swing.JButton();
+        deleteProduct = new javax.swing.JPanel();
+        padlock10 = new javax.swing.JLabel();
+        padlock11 = new javax.swing.JLabel();
+        nameProduct = new javax.swing.JTextField();
+        find1 = new javax.swing.JButton();
+        delete1 = new javax.swing.JButton();
         userT = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         productT = new javax.swing.JScrollPane();
@@ -369,67 +370,20 @@ public class StaffMain extends javax.swing.JFrame {
                 TypeDeleteActionPerformed(evt);
             }
         });
-        eliminar.add(TypeDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 210, 50));
-
-        deleteProduct.setBackground(new java.awt.Color(255, 255, 255));
-        deleteProduct.setForeground(new java.awt.Color(255, 255, 255));
-        deleteProduct.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        padlock9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usern.png"))); // NOI18N
-        deleteProduct.add(padlock9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
-
-        padlock10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/email.png"))); // NOI18N
-        deleteProduct.add(padlock10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
-
-        nameProduct.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
-        nameProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameProductActionPerformed(evt);
-            }
-        });
-        deleteProduct.add(nameProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 350, 50));
-
-        find1.setBackground(new java.awt.Color(9, 20, 104));
-        find1.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
-        find1.setForeground(new java.awt.Color(255, 255, 255));
-        find1.setText("FIND");
-        find1.setAlignmentY(0.0F);
-        find1.setContentAreaFilled(false);
-        find1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        find1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        find1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                find1ActionPerformed(evt);
-            }
-        });
-        deleteProduct.add(find1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 350, 45));
-
-        delete1.setBackground(new java.awt.Color(9, 20, 104));
-        delete1.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
-        delete1.setForeground(new java.awt.Color(255, 255, 255));
-        delete1.setText("DELETE");
-        delete1.setAlignmentY(0.0F);
-        delete1.setContentAreaFilled(false);
-        delete1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        delete1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        delete1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delete1ActionPerformed(evt);
-            }
-        });
-        deleteProduct.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 45));
-
-        eliminar.add(deleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 430, 250));
+        eliminar.add(TypeDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 40));
 
         deleteUser.setBackground(new java.awt.Color(255, 255, 255));
         deleteUser.setForeground(new java.awt.Color(255, 255, 255));
         deleteUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        padlock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usern.png"))); // NOI18N
-        deleteUser.add(padlock2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+        padlock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userD.png"))); // NOI18N
+        deleteUser.add(padlock2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
         padlock8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/email.png"))); // NOI18N
-        deleteUser.add(padlock8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
+        deleteUser.add(padlock8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
+
+        padlock9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usern.png"))); // NOI18N
+        deleteUser.add(padlock9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
 
         emailname.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
         emailname.addActionListener(new java.awt.event.ActionListener() {
@@ -437,7 +391,7 @@ public class StaffMain extends javax.swing.JFrame {
                 emailnameActionPerformed(evt);
             }
         });
-        deleteUser.add(emailname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 350, 50));
+        deleteUser.add(emailname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 350, 50));
 
         find.setBackground(new java.awt.Color(9, 20, 104));
         find.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
@@ -452,7 +406,7 @@ public class StaffMain extends javax.swing.JFrame {
                 findActionPerformed(evt);
             }
         });
-        deleteUser.add(find, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 350, 45));
+        deleteUser.add(find, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
 
         delete.setBackground(new java.awt.Color(9, 20, 104));
         delete.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
@@ -467,9 +421,59 @@ public class StaffMain extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        deleteUser.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 45));
+        deleteUser.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 350, 45));
 
-        eliminar.add(deleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 430, 250));
+        eliminar.add(deleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 430, 310));
+
+        deleteProduct.setBackground(new java.awt.Color(255, 255, 255));
+        deleteProduct.setForeground(new java.awt.Color(255, 255, 255));
+        deleteProduct.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        padlock10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pdelte.png"))); // NOI18N
+        deleteProduct.add(padlock10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+
+        padlock11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/product.png"))); // NOI18N
+        deleteProduct.add(padlock11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
+
+        nameProduct.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
+        nameProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameProductActionPerformed(evt);
+            }
+        });
+        deleteProduct.add(nameProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 350, 50));
+
+        find1.setBackground(new java.awt.Color(9, 20, 104));
+        find1.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        find1.setForeground(new java.awt.Color(255, 255, 255));
+        find1.setText("FIND");
+        find1.setAlignmentY(0.0F);
+        find1.setContentAreaFilled(false);
+        find1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        find1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        find1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                find1ActionPerformed(evt);
+            }
+        });
+        deleteProduct.add(find1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 45));
+
+        delete1.setBackground(new java.awt.Color(9, 20, 104));
+        delete1.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        delete1.setForeground(new java.awt.Color(255, 255, 255));
+        delete1.setText("DELETE");
+        delete1.setAlignmentY(0.0F);
+        delete1.setContentAreaFilled(false);
+        delete1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete1ActionPerformed(evt);
+            }
+        });
+        deleteProduct.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 350, 45));
+
+        eliminar.add(deleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 430, 300));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -551,7 +555,6 @@ public class StaffMain extends javax.swing.JFrame {
     private void TypeDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeDeleteActionPerformed
         setFalse(panelsD,tablesD);
         option = this.TypeDelete.getSelectedIndex();
-        tablesD[option].setVisible(true);
         panelsD[option].setVisible(true);
         panelsD[option].setBackground(new Color(255,255,255,85));
         panelsD[option].requestFocus();
@@ -712,6 +715,7 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JLabel padlock;
     private javax.swing.JLabel padlock1;
     private javax.swing.JLabel padlock10;
+    private javax.swing.JLabel padlock11;
     private javax.swing.JLabel padlock2;
     private javax.swing.JLabel padlock3;
     private javax.swing.JLabel padlock4;
