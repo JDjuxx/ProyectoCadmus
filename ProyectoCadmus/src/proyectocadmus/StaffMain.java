@@ -49,8 +49,8 @@ public class StaffMain extends javax.swing.JFrame {
     }
     
     public void fillpanelE(){
-        panelsE[1]=this.editP;
-        panelsE[2]=this.editU;
+        panelsE[1]=this.editU;
+        panelsE[2]=this.editP;
     }
     
     public void filltableE(){
@@ -109,7 +109,18 @@ public class StaffMain extends javax.swing.JFrame {
     public void editProduct(){
         PlaceHolder holder1 = new PlaceHolder(textE,"Edition's Value");
     }
-
+    
+    public void logOut(){
+        Staff staff = new Staff();
+        staff.setVisible(true);
+        this.dispose();
+    }
+    
+    public void home(){
+        Inicio inicio=new Inicio();
+        inicio.setVisible(true);
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,6 +161,8 @@ public class StaffMain extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         userTable = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        home2 = new javax.swing.JButton();
+        logOut2 = new javax.swing.JButton();
         bginsert = new javax.swing.JLabel();
         eliminar = new javax.swing.JPanel();
         TypeDelete = new javax.swing.JComboBox<>();
@@ -170,6 +183,8 @@ public class StaffMain extends javax.swing.JFrame {
         jTable3 = new javax.swing.JTable();
         productT = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        home1 = new javax.swing.JButton();
+        logOut1 = new javax.swing.JButton();
         bgdelete = new javax.swing.JLabel();
         editar = new javax.swing.JPanel();
         TypeEdit = new javax.swing.JComboBox<>();
@@ -187,6 +202,8 @@ public class StaffMain extends javax.swing.JFrame {
         jTable5 = new javax.swing.JTable();
         productE = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
+        logOut = new javax.swing.JButton();
+        home = new javax.swing.JButton();
         bgedit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -201,7 +218,7 @@ public class StaffMain extends javax.swing.JFrame {
                 TypeInsertActionPerformed(evt);
             }
         });
-        insertar.add(TypeInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 220, 40));
+        insertar.add(TypeInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 220, 40));
 
         userdata.setBackground(new java.awt.Color(255, 255, 255));
         userdata.setForeground(new java.awt.Color(255, 255, 255));
@@ -394,6 +411,33 @@ public class StaffMain extends javax.swing.JFrame {
 
         insertar.add(userTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
+        home2.setBackground(new java.awt.Color(255, 255, 255));
+        home2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        home2.setToolTipText("");
+        home2.setBorder(null);
+        home2.setBorderPainted(false);
+        home2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                home2ActionPerformed(evt);
+            }
+        });
+        insertar.add(home2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 30, 50, 50));
+
+        logOut2.setBackground(new java.awt.Color(255, 255, 255));
+        logOut2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        logOut2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        logOut2.setText("LOG OUT");
+        logOut2.setToolTipText("");
+        logOut2.setAlignmentY(0.0F);
+        logOut2.setBorder(null);
+        logOut2.setBorderPainted(false);
+        logOut2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOut2ActionPerformed(evt);
+            }
+        });
+        insertar.add(logOut2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 150, 50));
+
         bginsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
         insertar.add(bginsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 1400, 940));
 
@@ -408,7 +452,7 @@ public class StaffMain extends javax.swing.JFrame {
                 TypeDeleteActionPerformed(evt);
             }
         });
-        eliminar.add(TypeDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 40));
+        eliminar.add(TypeDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 210, 40));
 
         deleteUser.setBackground(new java.awt.Color(255, 255, 255));
         deleteUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -547,6 +591,33 @@ public class StaffMain extends javax.swing.JFrame {
 
         eliminar.add(productT, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
+        home1.setBackground(new java.awt.Color(255, 255, 255));
+        home1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        home1.setToolTipText("");
+        home1.setBorder(null);
+        home1.setBorderPainted(false);
+        home1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                home1ActionPerformed(evt);
+            }
+        });
+        eliminar.add(home1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 30, 50, 50));
+
+        logOut1.setBackground(new java.awt.Color(255, 255, 255));
+        logOut1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        logOut1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        logOut1.setText("LOG OUT");
+        logOut1.setToolTipText("");
+        logOut1.setAlignmentY(0.0F);
+        logOut1.setBorder(null);
+        logOut1.setBorderPainted(false);
+        logOut1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOut1ActionPerformed(evt);
+            }
+        });
+        eliminar.add(logOut1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 150, 50));
+
         bgdelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
         eliminar.add(bgdelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -561,7 +632,7 @@ public class StaffMain extends javax.swing.JFrame {
                 TypeEditActionPerformed(evt);
             }
         });
-        editar.add(TypeEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 40));
+        editar.add(TypeEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 210, 40));
 
         editP.setBackground(new java.awt.Color(255, 255, 255));
         editP.setForeground(new java.awt.Color(255, 255, 255));
@@ -666,6 +737,33 @@ public class StaffMain extends javax.swing.JFrame {
         productE.setViewportView(jTable6);
 
         editar.add(productE, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
+
+        logOut.setBackground(new java.awt.Color(255, 255, 255));
+        logOut.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        logOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        logOut.setText("LOG OUT");
+        logOut.setToolTipText("");
+        logOut.setAlignmentY(0.0F);
+        logOut.setBorder(null);
+        logOut.setBorderPainted(false);
+        logOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutActionPerformed(evt);
+            }
+        });
+        editar.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 150, 50));
+
+        home.setBackground(new java.awt.Color(255, 255, 255));
+        home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        home.setToolTipText("");
+        home.setBorder(null);
+        home.setBorderPainted(false);
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        editar.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 30, 50, 50));
 
         bgedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
         editar.add(bgedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -820,6 +918,30 @@ public class StaffMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_editUserActionPerformed
 
+    private void logOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut2ActionPerformed
+        logOut();
+    }//GEN-LAST:event_logOut2ActionPerformed
+
+    private void home2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home2ActionPerformed
+        home();
+    }//GEN-LAST:event_home2ActionPerformed
+
+    private void logOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut1ActionPerformed
+        logOut();
+    }//GEN-LAST:event_logOut1ActionPerformed
+
+    private void home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home1ActionPerformed
+        home();
+    }//GEN-LAST:event_home1ActionPerformed
+
+    private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
+        logOut();
+    }//GEN-LAST:event_logOutActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        home();
+    }//GEN-LAST:event_homeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -879,6 +1001,9 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTextField emailname;
     private javax.swing.JButton find;
     private javax.swing.JButton find1;
+    private javax.swing.JButton home;
+    private javax.swing.JButton home1;
+    private javax.swing.JButton home2;
     private javax.swing.JPanel insertar;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
@@ -887,6 +1012,9 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JButton logOut;
+    private javax.swing.JButton logOut1;
+    private javax.swing.JButton logOut2;
     private javax.swing.JButton login;
     private javax.swing.JButton login1;
     private javax.swing.JTextField name;
