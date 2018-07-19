@@ -18,23 +18,39 @@ import javax.swing.JScrollPane;
 public class StaffMain extends javax.swing.JFrame {
     int option;
     JPanel panels[] = new JPanel[3];
+    JPanel panelsD[] = new JPanel[3];
     JScrollPane tables[] = new JScrollPane[3];
+    JScrollPane tablesD[] = new JScrollPane[3];
     
     /**
      * Creates new form StaffMain
      */
     public StaffMain() {
         initComponents();
+        fillpanelD();
         fillpanel();
         filltable();
-        setFalse();
+        filltableD();
+        setFalse(panels,tables);
+        setFalse(panelsD,tablesD);
+        
     }
     
-    public void setFalse(){
-        for(int i=1;i<panels.length;i++){
-            panels[i].setVisible(false);
-            tables[i].setVisible(false);
+    public void setFalse(JPanel p[],JScrollPane t[]){
+        for(int i=1;i<3;i++){
+            p[i].setVisible(false);
+            t[i].setVisible(false);
         }
+    }
+    
+    public void fillpanelD(){
+        panelsD[1]=this.deleteUser;
+        panelsD[2]=this.deleteProduct;
+    }
+    
+    public void filltableD(){
+        tablesD[1]=this.userT;
+        tablesD[2]=this.productT;
     }
     
     public void fillpanel(){
@@ -62,7 +78,13 @@ public class StaffMain extends javax.swing.JFrame {
         PlaceHolder holder3 = new PlaceHolder(quantity,"Quantity");
     }
     
+    public void deleteUser(){
+        PlaceHolder holder1 = new PlaceHolder(emailname,"Username o Email");
+    }
     
+    public void deleteProduct(){
+        PlaceHolder holder1 = new PlaceHolder(nameProduct,"Product Name");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,6 +129,22 @@ public class StaffMain extends javax.swing.JFrame {
         bginsert = new javax.swing.JLabel();
         eliminar = new javax.swing.JPanel();
         TypeDelete = new javax.swing.JComboBox<>();
+        deleteProduct = new javax.swing.JPanel();
+        padlock9 = new javax.swing.JLabel();
+        padlock10 = new javax.swing.JLabel();
+        nameProduct = new javax.swing.JTextField();
+        find1 = new javax.swing.JButton();
+        delete1 = new javax.swing.JButton();
+        deleteUser = new javax.swing.JPanel();
+        padlock2 = new javax.swing.JLabel();
+        padlock8 = new javax.swing.JLabel();
+        emailname = new javax.swing.JTextField();
+        find = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        userT = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        productT = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
         bgdelete = new javax.swing.JLabel();
         editar = new javax.swing.JPanel();
         TypeEdit = new javax.swing.JComboBox<>();
@@ -118,7 +156,7 @@ public class StaffMain extends javax.swing.JFrame {
         insertar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TypeInsert.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        TypeInsert.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoger Opción...", "Usuario\t", "Producto\t", "Pedido", " " }));
+        TypeInsert.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoger Opción...", "Usuario\t", "Producto\t", " ", " " }));
         TypeInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TypeInsertActionPerformed(evt);
@@ -324,13 +362,148 @@ public class StaffMain extends javax.swing.JFrame {
 
         eliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TypeDelete.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoger Opción...", "Usuario\t", "Producto\t", "Pedido", " " }));
+        TypeDelete.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        TypeDelete.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoger Opción...", "Usuario\t", "Producto\t", " ", " " }));
         TypeDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TypeDeleteActionPerformed(evt);
             }
         });
-        eliminar.add(TypeDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        eliminar.add(TypeDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 210, 50));
+
+        deleteProduct.setBackground(new java.awt.Color(255, 255, 255));
+        deleteProduct.setForeground(new java.awt.Color(255, 255, 255));
+        deleteProduct.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        padlock9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usern.png"))); // NOI18N
+        deleteProduct.add(padlock9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+
+        padlock10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/email.png"))); // NOI18N
+        deleteProduct.add(padlock10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
+
+        nameProduct.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
+        nameProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameProductActionPerformed(evt);
+            }
+        });
+        deleteProduct.add(nameProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 350, 50));
+
+        find1.setBackground(new java.awt.Color(9, 20, 104));
+        find1.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        find1.setForeground(new java.awt.Color(255, 255, 255));
+        find1.setText("FIND");
+        find1.setAlignmentY(0.0F);
+        find1.setContentAreaFilled(false);
+        find1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        find1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        find1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                find1ActionPerformed(evt);
+            }
+        });
+        deleteProduct.add(find1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 350, 45));
+
+        delete1.setBackground(new java.awt.Color(9, 20, 104));
+        delete1.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        delete1.setForeground(new java.awt.Color(255, 255, 255));
+        delete1.setText("DELETE");
+        delete1.setAlignmentY(0.0F);
+        delete1.setContentAreaFilled(false);
+        delete1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete1ActionPerformed(evt);
+            }
+        });
+        deleteProduct.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 45));
+
+        eliminar.add(deleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 430, 250));
+
+        deleteUser.setBackground(new java.awt.Color(255, 255, 255));
+        deleteUser.setForeground(new java.awt.Color(255, 255, 255));
+        deleteUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        padlock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usern.png"))); // NOI18N
+        deleteUser.add(padlock2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+
+        padlock8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/email.png"))); // NOI18N
+        deleteUser.add(padlock8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
+
+        emailname.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
+        emailname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailnameActionPerformed(evt);
+            }
+        });
+        deleteUser.add(emailname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 350, 50));
+
+        find.setBackground(new java.awt.Color(9, 20, 104));
+        find.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        find.setForeground(new java.awt.Color(255, 255, 255));
+        find.setText("FIND");
+        find.setAlignmentY(0.0F);
+        find.setContentAreaFilled(false);
+        find.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        find.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        find.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findActionPerformed(evt);
+            }
+        });
+        deleteUser.add(find, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 350, 45));
+
+        delete.setBackground(new java.awt.Color(9, 20, 104));
+        delete.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        delete.setForeground(new java.awt.Color(255, 255, 255));
+        delete.setText("DELETE");
+        delete.setAlignmentY(0.0F);
+        delete.setContentAreaFilled(false);
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+        deleteUser.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 45));
+
+        eliminar.add(deleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 430, 250));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        userT.setViewportView(jTable3);
+
+        eliminar.add(userT, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        productT.setViewportView(jTable4);
+
+        eliminar.add(productT, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
         bgdelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
         eliminar.add(bgdelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -358,7 +531,7 @@ public class StaffMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TypeInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeInsertActionPerformed
-        setFalse();
+        setFalse(panels,tables);
         option = this.TypeInsert.getSelectedIndex();
         tables[option].setVisible(true);
         panels[option].setVisible(true);
@@ -376,7 +549,20 @@ public class StaffMain extends javax.swing.JFrame {
     }//GEN-LAST:event_TypeInsertActionPerformed
 
     private void TypeDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeDeleteActionPerformed
-        // TODO add your handling code here:
+        setFalse(panelsD,tablesD);
+        option = this.TypeDelete.getSelectedIndex();
+        tablesD[option].setVisible(true);
+        panelsD[option].setVisible(true);
+        panelsD[option].setBackground(new Color(255,255,255,85));
+        panelsD[option].requestFocus();
+        switch (option){
+            case 1:
+                deleteUser();
+                break;
+            case 2:
+                deleteProduct();
+                break;
+        }
     }//GEN-LAST:event_TypeDeleteActionPerformed
 
     private void TypeEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeEditActionPerformed
@@ -435,6 +621,30 @@ public class StaffMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
+    private void nameProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameProductActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameProductActionPerformed
+
+    private void find1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_find1ActionPerformed
+
+    private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delete1ActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findActionPerformed
+
+    private void emailnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailnameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -479,32 +689,48 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JLabel bgedit;
     private javax.swing.JLabel bginsert;
     private javax.swing.JComboBox<String> canton;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton delete1;
+    private javax.swing.JPanel deleteProduct;
+    private javax.swing.JPanel deleteUser;
     private javax.swing.JPanel editar;
     private javax.swing.JPanel eliminar;
     private javax.swing.JTextField email;
+    private javax.swing.JTextField emailname;
+    private javax.swing.JButton find;
+    private javax.swing.JButton find1;
     private javax.swing.JPanel insertar;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JButton login;
     private javax.swing.JButton login1;
     private javax.swing.JTextField name;
+    private javax.swing.JTextField nameProduct;
     private javax.swing.JLabel padlock;
     private javax.swing.JLabel padlock1;
+    private javax.swing.JLabel padlock10;
+    private javax.swing.JLabel padlock2;
     private javax.swing.JLabel padlock3;
     private javax.swing.JLabel padlock4;
     private javax.swing.JLabel padlock5;
     private javax.swing.JLabel padlock6;
     private javax.swing.JLabel padlock7;
+    private javax.swing.JLabel padlock8;
+    private javax.swing.JLabel padlock9;
     private javax.swing.JTextField password;
     private javax.swing.JTextField phone;
     private javax.swing.JTextField product;
+    private javax.swing.JScrollPane productT;
     private javax.swing.JScrollPane productTable;
     private javax.swing.JPanel productdata;
     private javax.swing.JComboBox<String> province;
     private javax.swing.JTextField quantity;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user1;
+    private javax.swing.JScrollPane userT;
     private javax.swing.JScrollPane userTable;
     private javax.swing.JPanel userdata;
     private javax.swing.JTextField username;
