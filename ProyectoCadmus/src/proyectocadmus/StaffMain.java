@@ -82,7 +82,6 @@ public class StaffMain extends javax.swing.JFrame {
         login = new javax.swing.JButton();
         province = new javax.swing.JComboBox<>();
         canton = new javax.swing.JComboBox<>();
-        bginsert = new javax.swing.JLabel();
         productdata = new javax.swing.JPanel();
         user1 = new javax.swing.JLabel();
         padlock1 = new javax.swing.JLabel();
@@ -91,6 +90,7 @@ public class StaffMain extends javax.swing.JFrame {
         login1 = new javax.swing.JButton();
         value = new javax.swing.JTextField();
         quantity = new javax.swing.JTextField();
+        bginsert = new javax.swing.JLabel();
         eliminar = new javax.swing.JPanel();
         TypeDelete = new javax.swing.JComboBox<>();
         bgdelete = new javax.swing.JLabel();
@@ -200,7 +200,7 @@ public class StaffMain extends javax.swing.JFrame {
                 loginActionPerformed(evt);
             }
         });
-        userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 350, 45));
+        userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 350, 45));
 
         province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
         userdata.add(province, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 210, 30));
@@ -208,10 +208,7 @@ public class StaffMain extends javax.swing.JFrame {
         canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
         userdata.add(canton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 150, 30));
 
-        insertar.add(userdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 430, 600));
-
-        bginsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
-        insertar.add(bginsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 1400, 940));
+        insertar.add(userdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 430, 580));
 
         productdata.setBackground(new java.awt.Color(255, 255, 255));
         productdata.setForeground(new java.awt.Color(255, 255, 255));
@@ -272,6 +269,9 @@ public class StaffMain extends javax.swing.JFrame {
 
         insertar.add(productdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 430, 310));
 
+        bginsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
+        insertar.add(bginsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 1400, 940));
+
         jTabbedPane1.addTab("Insertar", insertar);
 
         eliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -313,7 +313,7 @@ public class StaffMain extends javax.swing.JFrame {
         setFalse();
         option = this.TypeInsert.getSelectedIndex();
         panels[option].setVisible(true);
-        panels[option].setBackground(new Color(255,255,255,65));
+        panels[option].setBackground(new Color(255,255,255,85));
         panels[option].requestFocus();
         switch (option){
             case 1:
