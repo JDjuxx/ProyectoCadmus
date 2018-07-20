@@ -38,6 +38,7 @@ public class StaffMain extends javax.swing.JFrame {
 	JScrollPane tables[] = new JScrollPane[3];
 	JScrollPane tablesD[] = new JScrollPane[3];
 	JScrollPane tablesE[] = new JScrollPane[3];
+	String orderId;
 
 	/**
 	 * Creates new form StaffMain
@@ -1122,6 +1123,7 @@ public class StaffMain extends javax.swing.JFrame {
         manage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageActionPerformed(evt);
+                
             }
         });
         order.add(manage, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 350, 45));
@@ -1135,10 +1137,14 @@ public class StaffMain extends javax.swing.JFrame {
         findO.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         findO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageActionPerformed(evt);
                 
                 System.out.println("FindO button pressed");
+
+                if(!OrderId.getText().equals("")) {
                 
+                retreiveTable7Single();
+                
+                }
             }
         });
         
@@ -1580,6 +1586,52 @@ public class StaffMain extends javax.swing.JFrame {
 
 		
 	}
+	
+private void retreiveTable7Single() {
+		
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idPEDIDO` AS ID, fechaPed AS Fecha, estado AS Estado FROM `PEDIDO` WHERE `idPEDIDO` = " + OrderId.getText() + ";");
+			System.out.println("SELECT `idPEDIDO` AS ID, fechaPed AS Fecha, estado AS Estado FROM `PEDIDO` WHERE `idPEDIDO` = " + OrderId.getText() + ";");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 0 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 1 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			jTable7.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+		
+	}
 
 
 	private void TypeEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeEditActionPerformed
@@ -1720,7 +1772,8 @@ public class StaffMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_homeActionPerformed
 
     private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed
-        Manage manage=new Manage();
+    	orderId = jTable7.getValueAt(jTable7.getSelectedRow(), 0).toString();
+    	Manage manage=new Manage(orderId);
         manage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_manageActionPerformed
