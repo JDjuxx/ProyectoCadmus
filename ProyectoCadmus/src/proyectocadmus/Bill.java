@@ -127,7 +127,7 @@ public class Bill extends javax.swing.JFrame {
 					String idLugarGeo = rs.getString("LUGARGEO_idLUGARGEO");
 					
 					conexion.setStmt(conexion.getConn().createStatement());
-					conexion.getStmt().executeQuery("INSERT INTO `ALBARAN` (`fechaEntrega`, `nombreDest`, `LUGARGEO_idLUGARGEO`) VALUES (CURDATE(), '" + user.getText() + "', " + idLugarGeo + ");");
+					conexion.getStmt().executeQuery("INSERT INTO `ALBARAN` (`nombreDest`, `LUGARGEO_idLUGARGEO`) VALUES ('" + user.getText() + "', " + idLugarGeo + ");");
 					System.out.println("INSERT INTO `ALBARAN` (`fechaEntrega`, `nombreDest`, `LUGARGEO_idLUGARGEO`) VALUES (CURDATE(), '" + user.getText() + "', " + idLugarGeo + ");");
 					
 					//Create pedido

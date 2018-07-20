@@ -42,11 +42,6 @@ public class Tracking extends javax.swing.JFrame {
 			conexion.setStmt(conexion.getConn().createStatement());
 
 
-			
-			
-			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idENVIO`, `nombreProducto`, cantidad, ENVIO.estado, fechaEntrega   FROM `DETALLE_ENVIO`, `ENVIO`, `PEDIDO`, `FACTURA`,`CLIENTE`  WHERE ENVIO_idENVIO = `idENVIO` AND `FACTURA_idFACTURA` = `idFACTURA` AND `CLIENTE_idCLIENTE` = `idCLIENTE`  AND`CLIENTE_idCLIENTE` = 13;");
-			System.out.println("SELECT `idENVIO`, `nombreProducto`, cantidad, ENVIO.estado, fechaEntrega   FROM `DETALLE_ENVIO`, `ENVIO`, `PEDIDO`, `FACTURA`,`CLIENTE`  WHERE ENVIO_idENVIO = `idENVIO` AND `FACTURA_idFACTURA` = `idFACTURA` AND `CLIENTE_idCLIENTE` = `idCLIENTE`  AND`CLIENTE_idCLIENTE` = 13;");
-
                         ResultSet rs = conexion.getStmt().executeQuery("SELECT idCLIENTE FROM CLIENTE WHERE id = '" + ClId + "' ");
                         System.out.println("SELECT idCLIENTE FROM CLIENTE WHERE id = '" + ClId + "' ");
                         rs.next();
