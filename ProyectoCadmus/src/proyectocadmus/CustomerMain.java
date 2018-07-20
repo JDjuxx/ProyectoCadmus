@@ -409,7 +409,7 @@ public class CustomerMain extends javax.swing.JFrame {
 	}//GEN-LAST:event_logOut2ActionPerformed
 
     private void trackingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackingActionPerformed
-        Tracking tracking = new Tracking();
+        Tracking tracking = new Tracking(id);
         tracking.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_trackingActionPerformed
