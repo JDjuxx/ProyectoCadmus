@@ -1547,4 +1547,6 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTextField username;
     private javax.swing.JTextField value;
     // End of variables declaration//GEN-END:variables
+    
+    JDBC conexion = new JDBC();
 }
