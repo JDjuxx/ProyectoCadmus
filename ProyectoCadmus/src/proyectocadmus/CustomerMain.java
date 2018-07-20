@@ -88,6 +88,16 @@ public class CustomerMain extends javax.swing.JFrame {
         FIND.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FINDActionPerformed(evt);
+                
+                System.out.println("Find button pressed");
+
+				if(finder.getText().equals(""))
+					retrieveTable1();
+
+				else
+					searchRetrieveTable1();
+
+                
             }
         });
         getContentPane().add(FIND, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 20, 70, 50));
@@ -120,6 +130,76 @@ public class CustomerMain extends javax.swing.JFrame {
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addActionPerformed(evt);
+                
+                System.out.println("Add button pressed");
+
+				//Create bill
+
+				conexion.openConection();
+
+				System.out.println("Creating Statement");
+				
+				String regex = "^\\d*[1-9]\\d*$"; //Positive Integer
+				
+				if(quantity.getText().matches(regex) && (!quantity.getText().equals(""))) {
+				
+					if(Integer.parseInt(quantity.getText().toString()) < Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString())) {
+					
+				try {
+					
+					if(!facturaCreada) {
+					//Create Bill (Incomplete)
+					
+					conexion.setStmt(conexion.getConn().createStatement());
+					ResultSet rs = conexion.getStmt().executeQuery("SELECT idCLIENTE FROM `CLIENTE` WHERE id = " + id + ";");
+					System.out.println("SELECT idCLIENTE FROM `CLIENTE` WHERE id = " + id + ";");
+
+					rs.next();
+
+					String idCli = rs.getString("idCLIENTE");
+
+					String iva = "0.12";
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("INSERT INTO `FACTURA` (`fechaFac`, iva, `CLIENTE_idCLIENTE`) VALUES (CURDATE(), " + iva + ", " + idCli +");");
+					System.out.println("INSERT INTO `FACTURA` (`fechaFac`, iva, `CLIENTE_idCLIENTE`) VALUES (CURDATE(), " + iva + ", " + idCli +");");
+					
+					conexion.setStmt(conexion.getConn().createStatement());
+					rs = conexion.getStmt().executeQuery("SELECT `idFACTURA`  FROM `FACTURA`ORDER BY `idFACTURA` DESC LIMIT 1;");
+					System.out.println("SELECT `idFACTURA`  FROM `FACTURA`ORDER BY `idFACTURA` DESC LIMIT 1;");
+					rs.next();
+					
+					idFactura = rs.getString("idFACTURA");
+					
+					facturaCreada = true;
+					
+					}
+					//Create Details
+					
+					double subtotal = Double.parseDouble(quantity.getText()) * Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+					
+					conexion.setStmt(conexion.getConn().createStatement());
+					ResultSet rs = conexion.getStmt().executeQuery("SELECT `idPRODUCTO` FROM `PRODUCTO` WHERE `nombreProducto` = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + "';");
+					System.out.println("SELECT `idPRODUCTO` FROM `PRODUCTO` WHERE `nombreProducto` = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + "';");
+					rs.next();
+					
+					String idProducto = rs.getString("idPRODUCTO");
+					
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("INSERT INTO `DETALLE` (cantidad, subtotal, `FACTURA_idFACTURA`, `PRODUCTO_idPRODUCTO`) VALUES (" + quantity.getText() + ", " + subtotal +", " + idFactura + ", " + idProducto + ");");
+					System.out.println("SELECT idCLIENTE FROM `CLIENTE` WHERE id = " + id + ";");
+					
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				conexion.closeConection();
+
+				}
+				}
+                
             }
         });
         getContentPane().add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 700, 100, 40));
@@ -129,6 +209,38 @@ public class CustomerMain extends javax.swing.JFrame {
         checkOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkOutActionPerformed(evt);
+            
+
+				System.out.println("Checkout button pressed");
+				
+				String subtotalFac;
+				double totalFac;
+
+				try {
+					
+					conexion.openConection();
+					
+					conexion.setStmt(conexion.getConn().createStatement());
+					ResultSet rs = conexion.getStmt().executeQuery("SELECT SUM(subtotal) AS subtotal FROM `DETALLE` WHERE `FACTURA_idFACTURA` = " + idFactura + ";");
+					rs.next();
+					subtotalFac = rs.getString("subtotal");
+					
+					//Falta obtener de la base de datos
+					
+					totalFac = Double.parseDouble(subtotalFac) * 1.12; 
+					
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("UPDATE `FACTURA` SET total = " + totalFac + ", subtotal = " + subtotalFac + " WHERE `idFACTURA` = " + idFactura + ";");
+					System.out.println("UPDATE `FACTURA` SET total = " + totalFac + ", subtotal = " + subtotalFac + " WHERE `idFACTURA` = " + idFactura + ";");
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				conexion.closeConection();
+				
+            
             }
         });
         getContentPane().add(checkOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 700, 140, 50));
@@ -337,17 +449,21 @@ public class CustomerMain extends javax.swing.JFrame {
 		});
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton FIND;
-    private javax.swing.JButton add;
-    private javax.swing.JLabel bgOrder;
-    private javax.swing.JButton checkOut;
-    private javax.swing.JTextField finder;
-    private javax.swing.JScrollPane finderT;
-    private javax.swing.JButton home2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton logOut2;
-    private javax.swing.JTextField quantity;
-    private javax.swing.JButton tracking;
-    // End of variables declaration//GEN-END:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton FIND;
+	private javax.swing.JButton add;
+	private javax.swing.JLabel bgOrder;
+	private javax.swing.JButton checkOut;
+	private javax.swing.JTextField finder;
+	private javax.swing.JScrollPane finderT;
+	private javax.swing.JButton home2;
+	private javax.swing.JTable jTable1;
+	private javax.swing.JButton logOut2;
+	private javax.swing.JTextField quantity;
+	private javax.swing.JButton tracking;
+
+	private JDBC conexion = new JDBC();
+	
+	
+	// End of variables declaration//GEN-END:variables
 }
