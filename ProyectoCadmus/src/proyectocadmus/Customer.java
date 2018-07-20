@@ -163,7 +163,7 @@ public class Customer extends javax.swing.JFrame {
   
     
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        id = password.getText();
+        id = username.getText();
     	CustomerMain main = new CustomerMain();
         main.setVisible(true);
         main.getUserCred(id);
