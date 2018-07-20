@@ -22,6 +22,9 @@ public class Customer extends javax.swing.JFrame {
     /**
      * Creates new form Customer
      */
+	
+    String id;
+	
     public Customer() {
         initComponents();
         this.log.setBackground(new Color(255,255,255,35));
@@ -83,8 +86,8 @@ public class Customer extends javax.swing.JFrame {
         login.setLabel("LOGIN");
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
-                /*
+                
+                
                 System.out.println("Login Button Pressed");
                 
                 if(!username.getText().equals("")){
@@ -99,7 +102,12 @@ public class Customer extends javax.swing.JFrame {
 						
 						if (rs.isBeforeFirst() ) {    
 						     
-							//boolean 
+							loginActionPerformed(evt);
+							rs.next();
+							id = rs.getString("idCLIENTE");
+							
+							System.out.println("ID: " + id);
+							
 							
 						} else
 							System.out.println("Wrong User or password");
@@ -109,12 +117,14 @@ public class Customer extends javax.swing.JFrame {
 						e.printStackTrace();
 					}
 					
-
+					conexion.closeConection();
                 	
-                }*/
+                }
                 
             }
         });
+        
+        
         log.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 350, 45));
 
         username.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
@@ -149,9 +159,13 @@ public class Customer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+  
+    
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        CustomerMain main = new CustomerMain();
+        id = password.getText();
+    	CustomerMain main = new CustomerMain();
         main.setVisible(true);
+        main.getUserCred(id);
         this.dispose();
     }//GEN-LAST:event_loginActionPerformed
 
@@ -220,5 +234,7 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JTextField username;
     
     private JDBC conexion = new JDBC();
+    
+
     // End of variables declaration//GEN-END:variables
 }

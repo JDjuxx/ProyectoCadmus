@@ -5,6 +5,18 @@
  */
 package proyectocadmus;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import com.sun.xml.internal.ws.client.dispatch.JAXBDispatch;
+
+import conexion.JDBC;
+
 /**
  *
  * @author renatasanandres
@@ -14,9 +26,18 @@ public class CustomerMain extends javax.swing.JFrame {
     /**
      * Creates new form CustomerMain
      */
-    public CustomerMain() {
+
+	String id;
+	
+	public CustomerMain() {
         initComponents();
         
+    }
+    
+    public void getUserCred(String idicito) {
+    	
+    	id = idicito;
+    	JOptionPane.showMessageDialog(null, id);
     }
 
     /**
@@ -50,6 +71,16 @@ public class CustomerMain extends javax.swing.JFrame {
         FIND.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FINDActionPerformed(evt);
+                
+                System.out.println("Find button pressed");
+                
+                if(finder.getText().equals(""))
+                	retrieveTable1();
+                
+                else
+                	searchRetrieveTable1();
+                
+                
             }
         });
         getContentPane().add(FIND, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 20, 70, 50));
@@ -82,6 +113,34 @@ public class CustomerMain extends javax.swing.JFrame {
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addActionPerformed(evt);
+                
+                System.out.println("Add button pressed");
+                
+                //Create bill
+                
+                conexion.openConection();
+
+        		System.out.println("Creating Statement");
+
+ 
+        			try {
+					
+        				String iva = "0.12";
+        				
+        				Customer id = new Customer();
+        				
+        				conexion.setStmt(conexion.getConn().createStatement());
+        				conexion.getStmt().executeQuery("INSERT INTO `FACTURA` (`fechaFac`, iva, `CLIENTE_idCLIENTE`) VALUES (CURDATE(), " + iva + ", " + id.id +");");
+	        			System.out.println("INSERT INTO `FACTURA` (`fechaFac`, iva, `CLIENTE_idCLIENTE`) VALUES (CURDATE(), " + iva + ", " + id.id +");");
+					
+        			} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+        			conexion.closeConection();
+                
+                
             }
         });
         getContentPane().add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 700, 100, 40));
@@ -100,9 +159,102 @@ public class CustomerMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+	private void retrieveTable1() {
+
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idPRODUCTO` AS ID, nombreProducto AS Producto, valorUnit AS Precio, cantidadStock AS 'En Stock' FROM `PRODUCTO`;");
+			System.out.println("SELECT `idPRODUCTO` AS ID, nombreProducto AS Producto, valorUnit AS Precio, cantidadStock AS 'En Stock' FROM `PRODUCTO`;");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 1 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 2 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			jTable1.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+
+	}
+	
+	private void searchRetrieveTable1() {
+
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idPRODUCTO` AS ID, nombreProducto AS Producto, valorUnit AS Precio, cantidadStock AS 'En Stock' FROM `PRODUCTO` WHERE `nombreProducto` LIKE '" + finder.getText() + "%';");
+			System.out.println("SELECT `idPRODUCTO` AS ID, nombreProducto AS Producto, valorUnit AS Precio, cantidadStock AS 'En Stock' FROM `PRODUCTO` WHERE `nombreProducto` = '" + finder.getText() + "';");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 1 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 2 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			jTable1.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+
+	}
 
     private void checkOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutActionPerformed
         Bill bill = new Bill();
+        
         bill.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_checkOutActionPerformed
@@ -163,5 +315,7 @@ public class CustomerMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane finderT;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField quantity;
+    
+    private JDBC conexion = new JDBC();
     // End of variables declaration//GEN-END:variables
 }
