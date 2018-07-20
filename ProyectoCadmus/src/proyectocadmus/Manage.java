@@ -11,6 +11,12 @@ import conexion.JDBC;
 import sun.security.util.PendingException;
 
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
 
 import javax.swing.JOptionPane;
 
