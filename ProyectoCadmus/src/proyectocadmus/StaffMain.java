@@ -281,6 +281,9 @@ public class StaffMain extends javax.swing.JFrame {
         TypeInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TypeInsertActionPerformed(evt);
+                
+                retrieveTable1();
+                
             }
         });
         insertar.add(TypeInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 220, 40));
@@ -371,12 +374,123 @@ public class StaffMain extends javax.swing.JFrame {
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginActionPerformed(evt);
+                
+                System.out.println("Register button pressed");
+
+				conexion.openConection();
+
+				System.out.println("Creating statement");
+
+				if(!(address.getText().equals("") && province.getSelectedItem().equals("Seleccione una opcion") && username.getText().equals("") && password.getText().equals("") && name.getText().equals("") && email.getText().equals(""))) {
+
+					try {
+
+						conexion.setStmt(conexion.getConn().createStatement());
+						ResultSet rs = conexion.getStmt().executeQuery("SELECT idLUGARGEO from `LUGARGEO` WHERE pueblo = '" + canton.getSelectedItem().toString() + "';");
+						System.out.println("SELECT idLUGARGEO from `LUGARGEO` WHERE pueblo = '" + canton.getSelectedItem().toString() + "';");
+						rs.next();
+						String idLUGARGEO = rs.getString("idLUGARGEO");
+
+						conexion.setStmt(conexion.getConn().createStatement());
+						rs = conexion.getStmt().executeQuery("INSERT INTO `LUGARGEO` (direccion, `LUGARGEO_idLUGARGEO`) VALUES ('" + address.getText() + "', " + idLUGARGEO + ");");
+						System.out.println("INSERT INTO `LUGARGEO` (direccion, `LUGARGEO_idLUGARGEO`) VALUES ('" + address.getText() + "', " + idLUGARGEO + ");");
+
+						conexion.setStmt(conexion.getConn().createStatement());
+						rs = conexion.getStmt().executeQuery("SELECT `idLUGARGEO` FROM `LUGARGEO` ORDER BY `idLUGARGEO` DESC LIMIT 1;");
+						System.out.println("SELECT `idLUGARGEO` FROM `LUGARGEO` ORDER BY `idLUGARGEO` DESC LIMIT 1;");
+						rs.next();
+						idLUGARGEO = rs.getString("idLUGARGEO");
+
+						conexion.setStmt(conexion.getConn().createStatement());
+						rs = conexion.getStmt().executeQuery("INSERT INTO `CLIENTE` (`nombreCli`, telefono, id, correo, `LUGARGEO_idLUGARGEO`, `password`) VALUES ('" + name.getText() + "', '" + phone.getText() + "', '" + username.getText() + "', '" + email.getText() + "'," + idLUGARGEO + ", '" + password.getText() + "');");
+						System.out.println("INSERT INTO `CLIENTE` (`nombreCli`, telefono, id, correo, `LUGARGEO_idLUGARGEO`, `password`) VALUES ('" + name.getText() + "', '" + phone.getText() + "', '" + username.getText() + "', '" + email.getText() + "'," + idLUGARGEO + ", '" + password.getText() + "');");
+
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					conexion.closeConection();
+
+				}
+
+				retrieveTable1();
+                
             }
         });
         userdata.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 350, 45));
 
-        province.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", " " }));
-        userdata.add(province, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 210, 30));
+        conexion.openConection();
+
+		System.out.println("Creating statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT estado FROM `LUGARGEO` WHERE estado IS NOT NULL;");
+			System.out.println("Statement: SELECT estado FROM `LUGARGEO` WHERE estado IS NOT NULL;");
+			list.add("Seleccione una opcion");
+
+			while(rs.next()) {
+
+				String estado = rs.getString("estado");
+				list.add(estado);
+
+			}
+
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		conexion.closeConection();
+        
+		province.setModel(new DefaultComboBoxModel<String>(new Vector<String>(list)));
+		province.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				conexion.openConection();
+
+				System.out.println("Creating statement");
+
+				try {
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					ResultSet rs = conexion.getStmt().executeQuery("SELECT idlugargeo from `LUGARGEO` WHERE estado = '" + province.getSelectedItem().toString() + "';");
+					System.out.println("SELECT idlugargeo from `LUGARGEO` WHERE estado = '" + province.getSelectedItem().toString() + "';");
+					rs.next();
+					String idLUGARGEO = rs.getString("idLUGARGEO");
+
+					rs = conexion.getStmt().executeQuery("SELECT pueblo FROM `LUGARGEO` WHERE `LUGARGEO_idLUGARGEO` = " + idLUGARGEO + ";");
+					System.out.println("SELECT pueblo FROM `LUGARGEO` WHERE `LUGARGEO_idLUGARGEO` = " + idLUGARGEO + ";");
+
+					list.clear();
+					list.add("Seleccione una opcion");
+
+					while(rs.next()) {
+
+						String pueblo = rs.getString("pueblo");
+						list.add(pueblo);
+
+					}
+
+					canton.setModel(new DefaultComboBoxModel<String>(new Vector<String>(list)));
+
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				conexion.closeConection();
+
+			}
+		});        
+		
+		userdata.add(province, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 210, 30));
 
         canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
         userdata.add(canton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 150, 30));
@@ -415,6 +529,33 @@ public class StaffMain extends javax.swing.JFrame {
         login1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login1ActionPerformed(evt);
+                
+                System.out.println("Register (product) button pressed");
+
+				conexion.openConection();
+
+				System.out.println("Creating statement");
+
+				String regex = "^\\d*[1-9]\\d*$"; //Positive Integer
+				String regex2 = "^[0-9]\\d{0,9}(\\.\\d{1,3})?%?$"; //Positive float
+
+				if((!(value.getText().equals("") && product.getText().equals("") && quantity.getText().equals(""))) && quantity.getText().matches(regex) && value.getText().matches(regex2)) {
+
+					try {
+
+						conexion.setStmt(conexion.getConn().createStatement());
+						conexion.getStmt().executeQuery("INSERT INTO `PRODUCTO` (`nombreProducto`, `valorUnit`, `cantidadStock`) VALUES ('" + product.getText() + "',"+ value.getText() +" ," + quantity.getText() + ");");
+						System.out.println("INSERT INTO `PRODUCTO` (`nombreProducto`, `valorUnit`, `cantidadStock`) VALUES ('" + product.getText() + "',"+ value.getText() +" ," + quantity.getText() + ");");
+
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
+				retrieveTable2();
+                
             }
         });
         productdata.add(login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 350, 45));
@@ -442,37 +583,13 @@ public class StaffMain extends javax.swing.JFrame {
 
         insertar.add(productdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 430, 310));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        productTable.setViewportView(jTable2);
+        retrieveTable2();
+		productTable.setViewportView(jTable2);
 
         insertar.add(productTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        userTable.setViewportView(jTable1);
+        retrieveTable1();
+		userTable.setViewportView(jTable1);
 
         insertar.add(userTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
@@ -551,6 +668,15 @@ public class StaffMain extends javax.swing.JFrame {
         find.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 findActionPerformed(evt);
+                
+                System.out.println("Find button pressed");
+
+				if(!emailname.getText().equals("")) {
+
+					retrieveTable3();
+
+				}
+                
             }
         });
         deleteUser.add(find, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
@@ -566,6 +692,28 @@ public class StaffMain extends javax.swing.JFrame {
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
+                
+                System.out.println("Delete (User) button pressed");
+
+				try {
+
+					conexion.openConection();
+
+					String id = (String)jTable3.getValueAt(jTable3.getSelectedRow(), 0);
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("DELETE FROM `CLIENTE` WHERE idCLIENTE = " + id + ";");
+					System.out.println("DELETE FROM `CLIENTE` WHERE idCLIENTE = " + id + ";");
+
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+
+				conexion.closeConection();
+				retrieveTable3();
+                
             }
         });
         deleteUser.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 350, 45));
@@ -601,6 +749,51 @@ public class StaffMain extends javax.swing.JFrame {
         find1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 find1ActionPerformed(evt);
+                
+                System.out.println("Find product button pressed");
+
+				if(!nameProduct.getText().equals("")) {
+
+					retrieveTable4();
+
+				}
+
+
+			}
+		});
+		deleteProduct.add(find1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 45));
+
+		delete1.setBackground(new java.awt.Color(9, 20, 104));
+		delete1.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+		delete1.setForeground(new java.awt.Color(255, 255, 255));
+		delete1.setText("DELETE");
+		delete1.setAlignmentY(0.0F);
+		delete1.setContentAreaFilled(false);
+		delete1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		delete1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		delete1.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				delete1ActionPerformed(evt);
+
+				try {
+
+					conexion.openConection();
+
+					String id = (String)jTable4.getValueAt(jTable4.getSelectedRow(), 0);
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("DELETE FROM `PRODUCTO` WHERE `idPRODUCTO` = " + id + ";");
+					System.out.println("DELETE FROM `PRODUCTO` WHERE `idPRODUCTO` = " + id + ";");
+
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+
+				conexion.closeConection();
+				retrieveTable4();
+                
             }
         });
         deleteProduct.add(find1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 45));
@@ -728,6 +921,38 @@ public class StaffMain extends javax.swing.JFrame {
         editProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editProductActionPerformed(evt);
+                
+                System.out.println("UPDATE (Product) Button pressed");
+
+				try {
+
+					String data = editT.getText();
+					String id = (String)jTable6.getValueAt(jTable6.getSelectedRow(), 0);
+
+					System.out.println("Selected value: " + data);
+					System.out.println("Index: " + id);
+					String[] columnasProducto = {"idPRODUCTO", "nombreProducto", "valorUnit", "cantidadStock"};
+
+					conexion.openConection();
+
+					System.out.println("Creating statement");
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("UPDATE `PRODUCTO` SET `" + columnasProducto[jTable6.getSelectedColumn()] + "`= '" + data + "' WHERE " + "`" + columnasProducto[0] + "` = " + id + ";");
+
+					System.out.println("UPDATE `PRODUCTO` SET `" + columnasProducto[jTable5.getSelectedColumn()] + "`= '" + data + "' WHERE " + "`" + columnasProducto[0] + "` = " + id + ";");
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+
+				}
+
+				conexion.closeConection();
+
+				retrieveTable6();
+                
             }
         });
         editP.add(editProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
@@ -763,43 +988,76 @@ public class StaffMain extends javax.swing.JFrame {
         editUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editUserActionPerformed(evt);
+                
+                System.out.println("UPDATE (User) Button pressed");
+
+				try {
+
+					String data = textE.getText();
+					String id = (String)jTable5.getValueAt(jTable5.getSelectedRow(), 0);
+
+					System.out.println("Selected value: " + data);
+					System.out.println("Index: " + id);
+					String[] columnasCliente = {"idCLIENTE", "nombreCli", "telefono", "id", "correo", "direccion"};
+
+
+					if(jTable5.getColumnName(jTable5.getSelectedColumn()).equals("Direccion")) {
+
+						conexion.openConection();
+
+						conexion.setStmt(conexion.getConn().createStatement());
+						ResultSet rs = conexion.getStmt().executeQuery("SELECT `LUGARGEO_idLUGARGEO`  FROM `CLIENTE` WHERE `idCLIENTE` = " + id + ";");
+						System.out.println("SELECT `LUGARGEO_idLUGARGEO`  FROM `CLIENTE` WHERE `idCLIENTE` = " + id + ";");
+						rs.next();
+						String LUGARGEO_idLUGARGEO = rs.getString("LUGARGEO_idLUGARGEO");
+
+						System.out.println("Creating statement");
+
+						conexion.setStmt(conexion.getConn().createStatement());
+						conexion.getStmt().executeQuery("UPDATE `LUGARGEO` SET `" + columnasCliente[jTable5.getSelectedColumn()] + "`= '" + data + "' WHERE " + "`idLUGARGEO` = " + LUGARGEO_idLUGARGEO + ";");
+
+						System.out.println("UPDATE `LUGARGEO` SET `" + columnasCliente[jTable5.getSelectedColumn()] + "`= '" + data + "' WHERE " + "`idLUGARGEO` = " + id + ";");
+
+						conexion.closeConection();
+
+
+					}
+
+					conexion.openConection();
+
+					System.out.println("Creating statement");
+
+
+
+					conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("UPDATE `CLIENTE` SET `" + columnasCliente[jTable5.getSelectedColumn()] + "`= '" + data + "' WHERE " + "`" + columnasCliente[0] + "` = " + id + ";");
+
+					System.out.println("UPDATE `CLIENTE` SET `" + columnasCliente[jTable5.getSelectedColumn()] + "`= '" + data + "' WHERE " + "`" + columnasCliente[0] + "` = " + id + ";");
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+
+				}
+
+				conexion.closeConection();
+
+				retrieveTable5();
+                
             }
         });
         editU.add(editUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
 
         editar.add(editU, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 430, 260));
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        retrieveTable5();
+		userE.setViewportView(jTable5);
 
-            }
-        ));
-        userE.setViewportView(jTable5);
 
         editar.add(userE, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
-
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        productE.setViewportView(jTable6);
+        retrieveTable6();
+		productE.setViewportView(jTable6);
 
         editar.add(productE, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 700, 560));
 
@@ -1557,5 +1815,6 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTextField value;
     // End of variables declaration//GEN-END:variables
     
-    JDBC conexion = new JDBC();
+    private JDBC conexion = new JDBC();
+    private List<String> list = new LinkedList<String>();
 }
