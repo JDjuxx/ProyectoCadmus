@@ -941,6 +941,7 @@ public class StaffMain extends javax.swing.JFrame {
 		option = this.TypeInsert.getSelectedIndex();
 		if(option==0){
 
+                    
 		}else{
 			tables[option].setVisible(true);
 			panels[option].setVisible(true);
