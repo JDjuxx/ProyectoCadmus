@@ -53,6 +53,7 @@ public class Bill extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         destination = new javax.swing.JTextField();
         user = new javax.swing.JTextField();
+        home = new javax.swing.JButton();
         bgOrder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,20 +79,10 @@ public class Bill extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/address.png"))); // NOI18N
         bill.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 510, -1, 35));
-
-        date.setText("DSFASDFASF");
         bill.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 113, 350, 30));
-
-        name.setText("ASDFASDF");
         bill.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 153, 350, 30));
-
-        id.setText("AFASDFASDF");
         bill.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 193, 350, 30));
-
-        phone.setText("ASDFASDFAS");
         bill.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 233, 350, 30));
-
-        address.setText("ASDFASFDASFD");
         bill.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 273, 350, 30));
 
         buy.setBackground(new java.awt.Color(9, 20, 104));
@@ -133,6 +124,17 @@ public class Bill extends javax.swing.JFrame {
 
         getContentPane().add(bill, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 460, 650));
 
+        home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow.png"))); // NOI18N
+        home.setBorder(null);
+        home.setBorderPainted(false);
+        home.setContentAreaFilled(false);
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 90));
+
         bgOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bg2.jpg"))); // NOI18N
         getContentPane().add(bgOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 800));
 
@@ -142,6 +144,12 @@ public class Bill extends javax.swing.JFrame {
     private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
 
     }//GEN-LAST:event_buyActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        CustomerMain main = new CustomerMain();
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_homeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,6 +195,7 @@ public class Bill extends javax.swing.JFrame {
     private javax.swing.JButton buy;
     private javax.swing.JLabel date;
     private javax.swing.JTextField destination;
+    private javax.swing.JButton home;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
