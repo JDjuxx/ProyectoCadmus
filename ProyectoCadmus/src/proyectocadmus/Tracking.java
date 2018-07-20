@@ -19,14 +19,16 @@ import javax.swing.table.DefaultTableModel;
  * @author renatasanandres
  */
 public class Tracking extends javax.swing.JFrame {
-
+    String ClId;
     /**
      * Creates new form Tracking
      */
-    public Tracking() {
+    public Tracking(String id) {
+        ClId = id;
         initComponents();
-        PlaceHolder holder = new PlaceHolder(OrderId,"Arrive Date");
+        PlaceHolder holder = new PlaceHolder(OrderId,"Order Id");
         order.setBackground(new Color(255,255,255,85));
+        retrieveTable();
     }
     
     
@@ -39,10 +41,21 @@ public class Tracking extends javax.swing.JFrame {
 
 			conexion.setStmt(conexion.getConn().createStatement());
 
+
 			
 			
 			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idENVIO`, `nombreProducto`, cantidad, ENVIO.estado, fechaEntrega   FROM `DETALLE_ENVIO`, `ENVIO`, `PEDIDO`, `FACTURA`,`CLIENTE`  WHERE ENVIO_idENVIO = `idENVIO` AND `FACTURA_idFACTURA` = `idFACTURA` AND `CLIENTE_idCLIENTE` = `idCLIENTE`  AND`CLIENTE_idCLIENTE` = 13;");
 			System.out.println("SELECT `idENVIO`, `nombreProducto`, cantidad, ENVIO.estado, fechaEntrega   FROM `DETALLE_ENVIO`, `ENVIO`, `PEDIDO`, `FACTURA`,`CLIENTE`  WHERE ENVIO_idENVIO = `idENVIO` AND `FACTURA_idFACTURA` = `idFACTURA` AND `CLIENTE_idCLIENTE` = `idCLIENTE`  AND`CLIENTE_idCLIENTE` = 13;");
+
+                        ResultSet rs = conexion.getStmt().executeQuery("SELECT idCLIENTE FROM CLIENTE WHERE id = '" + ClId + "' ");
+                        System.out.println("SELECT idCLIENTE FROM CLIENTE WHERE id = '" + ClId + "' ");
+                        rs.next();
+                        String idCliente = rs.getString("idCLIENTE");
+                        
+                        
+			rs = conexion.getStmt().executeQuery("SELECT idENVIO, nombreProducto, cantidad, ENVIO.estado, fechaEntrega   FROM DETALLE_ENVIO, ENVIO, PEDIDO, FACTURA,CLIENTE  WHERE ENVIO_idENVIO = idENVIO AND FACTURA_idFACTURA = idFACTURA AND CLIENTE_idCLIENTE = idCLIENTE  AND`CLIENTE_idCLIENTE` = " + idCliente + ";");
+			System.out.println("SELECT idENVIO, nombreProducto, cantidad, ENVIO.estado, fechaEntrega   FROM DETALLE_ENVIO, ENVIO, PEDIDO, FACTURA,CLIENTE  WHERE ENVIO_idENVIO = idENVIO AND FACTURA_idFACTURA = idFACTURA AND CLIENTE_idCLIENTE = idCLIENTE  AND`CLIENTE_idCLIENTE` = " + idCliente + ";");
+
 			ResultSetMetaData metaData = rs.getMetaData();
 
 			int numberOfColumns = metaData.getColumnCount();
@@ -206,7 +219,7 @@ public class Tracking extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tracking().setVisible(true);
+                new Tracking("id").setVisible(true);
             }
         });
     }
