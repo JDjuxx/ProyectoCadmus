@@ -1133,21 +1133,12 @@ public class StaffMain extends javax.swing.JFrame {
         findO.setBorderPainted(false);
         findO.setContentAreaFilled(false);
         findO.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         order.add(findO, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
 
         pedido.add(order, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 440, 330));
 
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
+        retreiveTable7();
         orderT.setViewportView(jTable7);
 
         pedido.add(orderT, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, 600, 470));
@@ -1534,6 +1525,52 @@ public class StaffMain extends javax.swing.JFrame {
 		conexion.closeConection();
 
 
+	}
+	
+	private void retreiveTable7() {
+		
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idPEDIDO` AS ID, fechaPed AS Fecha, estado AS Estado FROM `PEDIDO`;");
+			System.out.println("SELECT `idPEDIDO` AS ID, fechaPed AS Fecha, estado AS Estado FROM `PEDIDO`;");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 0 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 1 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			jTable7.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+		
 	}
 
 
