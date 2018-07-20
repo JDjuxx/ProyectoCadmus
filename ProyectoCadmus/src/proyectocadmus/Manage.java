@@ -5,6 +5,9 @@
  */
 package proyectocadmus;
 
+import com.placeholder.PlaceHolder;
+import java.awt.Color;
+
 /**
  *
  * @author renatasanandres
@@ -16,6 +19,8 @@ public class Manage extends javax.swing.JFrame {
      */
     public Manage() {
         initComponents();
+        PlaceHolder holder = new PlaceHolder(OrderId,"Arrive Date");
+        order.setBackground(new Color(255,255,255,85));
     }
 
     /**
@@ -27,17 +32,137 @@ public class Manage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        order = new javax.swing.JPanel();
+        padlock14 = new javax.swing.JLabel();
+        padlock17 = new javax.swing.JLabel();
+        OrderId = new javax.swing.JTextField();
+        register = new javax.swing.JButton();
+        orderT = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
+        logOut3 = new javax.swing.JButton();
+        home3 = new javax.swing.JButton();
+        home = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1260, 770));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        order.setBackground(new java.awt.Color(255, 255, 255));
+        order.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        padlock14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/productE.png"))); // NOI18N
+        order.add(padlock14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+
+        padlock17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/date.png"))); // NOI18N
+        order.add(padlock17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
+
+        OrderId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderIdActionPerformed(evt);
+            }
+        });
+        order.add(OrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 350, 50));
+
+        register.setBackground(new java.awt.Color(255, 255, 255));
+        register.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
+        register.setForeground(new java.awt.Color(255, 255, 255));
+        register.setText("FIND");
+        register.setBorderPainted(false);
+        register.setContentAreaFilled(false);
+        register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerActionPerformed(evt);
+            }
+        });
+        order.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
+
+        getContentPane().add(order, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 440, 260));
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        orderT.setViewportView(jTable7);
+
+        getContentPane().add(orderT, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, 600, 470));
+
+        logOut3.setBackground(new java.awt.Color(255, 255, 255));
+        logOut3.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        logOut3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        logOut3.setText("LOG OUT");
+        logOut3.setToolTipText("");
+        logOut3.setAlignmentY(0.0F);
+        logOut3.setBorder(null);
+        logOut3.setBorderPainted(false);
+        logOut3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOut3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logOut3, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 150, 50));
+
+        home3.setBackground(new java.awt.Color(255, 255, 255));
+        home3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        home3.setToolTipText("");
+        home3.setBorder(null);
+        home3.setBorderPainted(false);
+        home3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                home3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(home3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 30, 50, 50));
+
+        home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow.png"))); // NOI18N
+        home.setBorder(null);
+        home.setBorderPainted(false);
+        home.setContentAreaFilled(false);
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 90));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ins.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logOut3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut3ActionPerformed
+        Staff staff=new Staff();
+        staff.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logOut3ActionPerformed
+
+    private void home3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home3ActionPerformed
+        Inicio inicio=new Inicio();
+        inicio.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_home3ActionPerformed
+
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registerActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        StaffMain main = new StaffMain();
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_homeActionPerformed
+
+    private void OrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OrderIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -75,6 +200,16 @@ public class Manage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField OrderId;
+    private javax.swing.JButton home;
+    private javax.swing.JButton home3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTable jTable7;
+    private javax.swing.JButton logOut3;
+    private javax.swing.JPanel order;
+    private javax.swing.JScrollPane orderT;
+    private javax.swing.JLabel padlock14;
+    private javax.swing.JLabel padlock17;
+    private javax.swing.JButton register;
     // End of variables declaration//GEN-END:variables
 }

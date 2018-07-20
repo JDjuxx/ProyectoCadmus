@@ -53,7 +53,7 @@ public class StaffMain extends javax.swing.JFrame {
 		setFalse(panels,tables);
 		setFalse(panelsD,tablesD);
 		setFalse(panelsE,tablesE); 
-                PlaceHolder holder = new PlaceHolder(orderN,"Order ID");
+                PlaceHolder holder = new PlaceHolder(OrderId,"Order ID");
                 order.setBackground(new Color(255,255,255,85));
 
 	}
@@ -262,7 +262,7 @@ public class StaffMain extends javax.swing.JFrame {
         order = new javax.swing.JPanel();
         padlock14 = new javax.swing.JLabel();
         padlock17 = new javax.swing.JLabel();
-        orderN = new javax.swing.JTextField();
+        OrderId = new javax.swing.JTextField();
         manage = new javax.swing.JButton();
         findO = new javax.swing.JButton();
         orderT = new javax.swing.JScrollPane();
@@ -846,9 +846,12 @@ public class StaffMain extends javax.swing.JFrame {
         padlock17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         order.add(padlock17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
 
-        orderN.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        orderN.setBorder(null);
-        order.add(orderN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 350, 50));
+        OrderId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderIdActionPerformed(evt);
+            }
+        });
+        order.add(OrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 350, 50));
 
         manage.setBackground(new java.awt.Color(255, 255, 255));
         manage.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
@@ -856,6 +859,7 @@ public class StaffMain extends javax.swing.JFrame {
         manage.setText("MANAGE");
         manage.setBorder(null);
         manage.setBorderPainted(false);
+        manage.setContentAreaFilled(false);
         manage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageActionPerformed(evt);
@@ -868,6 +872,7 @@ public class StaffMain extends javax.swing.JFrame {
         findO.setForeground(new java.awt.Color(255, 255, 255));
         findO.setText("FIND");
         findO.setBorderPainted(false);
+        findO.setContentAreaFilled(false);
         order.add(findO, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
 
         pedido.add(order, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 440, 330));
@@ -1423,6 +1428,10 @@ public class StaffMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_home3ActionPerformed
 
+    private void OrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OrderIdActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -1459,6 +1468,7 @@ public class StaffMain extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField OrderId;
     private javax.swing.JComboBox<String> TypeDelete;
     private javax.swing.JComboBox<String> TypeEdit;
     private javax.swing.JComboBox<String> TypeInsert;
@@ -1507,7 +1517,6 @@ public class StaffMain extends javax.swing.JFrame {
     private javax.swing.JTextField name;
     private javax.swing.JTextField nameProduct;
     private javax.swing.JPanel order;
-    private javax.swing.JTextField orderN;
     private javax.swing.JScrollPane orderT;
     private javax.swing.JLabel padlock;
     private javax.swing.JLabel padlock1;
