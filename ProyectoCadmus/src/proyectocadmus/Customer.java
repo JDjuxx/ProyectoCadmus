@@ -18,7 +18,9 @@ import java.sql.SQLException;
  * @author renatasanandres
  */
 public class Customer extends javax.swing.JFrame {
-
+    
+    String us="";
+    String pass="";
     /**
      * Creates new form Customer
      */
@@ -152,6 +154,7 @@ public class Customer extends javax.swing.JFrame {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         CustomerMain main = new CustomerMain();
         main.setVisible(true);
+        main.getUser(us,pass);
         this.dispose();
     }//GEN-LAST:event_loginActionPerformed
 

@@ -10,15 +10,23 @@ package proyectocadmus;
  * @author renatasanandres
  */
 public class CustomerMain extends javax.swing.JFrame {
-
+        String clave="";
+        String usuario="";
     /**
      * Creates new form CustomerMain
      */
     public CustomerMain() {
         initComponents();
         
+        
     }
 
+    
+    public void getUser(String a, String b){
+        clave=b;
+        usuario=a;
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
