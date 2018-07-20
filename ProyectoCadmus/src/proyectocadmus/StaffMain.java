@@ -860,6 +860,7 @@ public class StaffMain extends javax.swing.JFrame {
         manage.setBorder(null);
         manage.setBorderPainted(false);
         manage.setContentAreaFilled(false);
+        manage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         manage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageActionPerformed(evt);
@@ -873,6 +874,7 @@ public class StaffMain extends javax.swing.JFrame {
         findO.setText("FIND");
         findO.setBorderPainted(false);
         findO.setContentAreaFilled(false);
+        findO.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         order.add(findO, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
 
         pedido.add(order, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 440, 330));
