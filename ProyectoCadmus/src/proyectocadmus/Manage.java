@@ -70,6 +70,7 @@ public class Manage extends javax.swing.JFrame {
         register.setText("FIND");
         register.setBorderPainted(false);
         register.setContentAreaFilled(false);
+        register.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerActionPerformed(evt);
