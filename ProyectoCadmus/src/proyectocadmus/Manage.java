@@ -18,6 +18,15 @@ import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
+import javax.swing.JOptionPane;
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author renatasanandres
@@ -36,7 +45,11 @@ public class Manage extends javax.swing.JFrame {
         PlaceHolder holder = new PlaceHolder(OrderId,"Arrive Date");
         order.setBackground(new Color(255,255,255,85));
     }
-
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,7 +94,7 @@ public class Manage extends javax.swing.JFrame {
         register.setBackground(new java.awt.Color(255, 255, 255));
         register.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
         register.setForeground(new java.awt.Color(255, 255, 255));
-        register.setText("FIND");
+        register.setText("REGISTER ORDER");
         register.setBorderPainted(false);
         register.setContentAreaFilled(false);
         register.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -226,7 +239,7 @@ public class Manage extends javax.swing.JFrame {
     }//GEN-LAST:event_home3ActionPerformed
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Envio Creado...");
     }//GEN-LAST:event_registerActionPerformed
 
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
