@@ -18,6 +18,7 @@ import java.sql.SQLException;
  * @author renatasanandres
  */
 public class Customer extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form Customer

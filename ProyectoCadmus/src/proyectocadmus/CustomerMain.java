@@ -31,7 +31,6 @@ public class CustomerMain extends javax.swing.JFrame {
 	
 	public CustomerMain() {
         initComponents();
-        
     }
     
     public void getUserCred(String idicito) {
@@ -40,6 +39,17 @@ public class CustomerMain extends javax.swing.JFrame {
     	JOptionPane.showMessageDialog(null, id);
     }
 
+    public void logOut(){
+        Customer customer=new Customer();
+        customer.setVisible(true);
+        this.dispose();
+    }
+    
+    public void home(){
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +66,8 @@ public class CustomerMain extends javax.swing.JFrame {
         quantity = new javax.swing.JTextField();
         add = new javax.swing.JButton();
         checkOut = new javax.swing.JButton();
+        home2 = new javax.swing.JButton();
+        logOut2 = new javax.swing.JButton();
         bgOrder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,6 +165,33 @@ public class CustomerMain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(checkOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 700, 140, 50));
+
+        home2.setBackground(new java.awt.Color(255, 255, 255));
+        home2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        home2.setToolTipText("");
+        home2.setBorder(null);
+        home2.setBorderPainted(false);
+        home2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                home2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(home2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 20, 50, 50));
+
+        logOut2.setBackground(new java.awt.Color(255, 255, 255));
+        logOut2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        logOut2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        logOut2.setText("LOG OUT");
+        logOut2.setToolTipText("");
+        logOut2.setAlignmentY(0.0F);
+        logOut2.setBorder(null);
+        logOut2.setBorderPainted(false);
+        logOut2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOut2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logOut2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 150, 50));
 
         bgOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bg2.jpg"))); // NOI18N
         getContentPane().add(bgOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 800));
@@ -271,6 +310,14 @@ public class CustomerMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_quantityActionPerformed
 
+    private void home2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home2ActionPerformed
+        home();
+    }//GEN-LAST:event_home2ActionPerformed
+
+    private void logOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut2ActionPerformed
+        logOut();
+    }//GEN-LAST:event_logOut2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -313,7 +360,9 @@ public class CustomerMain extends javax.swing.JFrame {
     private javax.swing.JButton checkOut;
     private javax.swing.JTextField finder;
     private javax.swing.JScrollPane finderT;
+    private javax.swing.JButton home2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton logOut2;
     private javax.swing.JTextField quantity;
     
     private JDBC conexion = new JDBC();

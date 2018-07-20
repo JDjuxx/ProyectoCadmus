@@ -5,6 +5,7 @@
  */
 package proyectocadmus;
 
+import com.placeholder.PlaceHolder;
 import java.awt.Color;
 
 /**
@@ -19,6 +20,9 @@ public class Bill extends javax.swing.JFrame {
     public Bill() {
         initComponents();
         bill.setBackground(new Color(255,255,255,150));
+        PlaceHolder holder1 = new PlaceHolder(user,"Reciever");
+        PlaceHolder holder2 = new PlaceHolder(destination,"Destination Address");
+        
     }
 
     /**
@@ -32,34 +36,120 @@ public class Bill extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         bill = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        phone = new javax.swing.JLabel();
+        address = new javax.swing.JLabel();
+        buy = new javax.swing.JButton();
+        billT = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        destination = new javax.swing.JTextField();
+        user = new javax.swing.JTextField();
+        home = new javax.swing.JButton();
         bgOrder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bill2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, -1, -1));
 
         bill.setBackground(new java.awt.Color(255, 255, 255));
+        bill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout billLayout = new javax.swing.GroupLayout(bill);
-        bill.setLayout(billLayout);
-        billLayout.setHorizontalGroup(
-            billLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
-        );
-        billLayout.setVerticalGroup(
-            billLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/date.png"))); // NOI18N
+        bill.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 110, -1, 35));
 
-        getContentPane().add(bill, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 460, 620));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/name.png"))); // NOI18N
+        bill.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 460, -1, 35));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usern.png"))); // NOI18N
+        bill.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 190, -1, 35));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/phone.png"))); // NOI18N
+        bill.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 230, -1, 35));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/address.png"))); // NOI18N
+        bill.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 510, -1, 35));
+        bill.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 113, 350, 30));
+        bill.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 153, 350, 30));
+        bill.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 193, 350, 30));
+        bill.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 233, 350, 30));
+        bill.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 273, 350, 30));
+
+        buy.setBackground(new java.awt.Color(9, 20, 104));
+        buy.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
+        buy.setText("ACCEPT");
+        buy.setAlignmentY(0.0F);
+        buy.setContentAreaFilled(false);
+        buy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buy.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyActionPerformed(evt);
+            }
+        });
+        bill.add(buy, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 600, 350, 45));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        billT.setViewportView(jTable1);
+
+        bill.add(billT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 420, 140));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/name.png"))); // NOI18N
+        bill.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 150, -1, 35));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/address.png"))); // NOI18N
+        bill.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 270, -1, 35));
+        bill.add(destination, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 513, 350, 30));
+        bill.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 463, 200, 30));
+
+        getContentPane().add(bill, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 460, 650));
+
+        home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow.png"))); // NOI18N
+        home.setBorder(null);
+        home.setBorderPainted(false);
+        home.setContentAreaFilled(false);
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 90));
 
         bgOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bg2.jpg"))); // NOI18N
         getContentPane().add(bgOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 800));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
+
+    }//GEN-LAST:event_buyActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        CustomerMain main = new CustomerMain();
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_homeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,8 +188,26 @@ public class Bill extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel address;
     private javax.swing.JLabel bgOrder;
     private javax.swing.JPanel bill;
+    private javax.swing.JScrollPane billT;
+    private javax.swing.JButton buy;
+    private javax.swing.JLabel date;
+    private javax.swing.JTextField destination;
+    private javax.swing.JButton home;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel phone;
+    private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }
