@@ -6,7 +6,17 @@
 package proyectocadmus;
 
 import com.placeholder.PlaceHolder;
+
+import conexion.JDBC;
+import sun.security.util.PendingException;
+
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +27,12 @@ public class Manage extends javax.swing.JFrame {
     /**
      * Creates new form Manage
      */
-    public Manage() {
-        initComponents();
+	
+	String orderId;
+	
+    public Manage(String id) {
+        orderId = id;
+    	initComponents();
         PlaceHolder holder = new PlaceHolder(OrderId,"Arrive Date");
         order.setBackground(new Color(255,255,255,85));
     }
@@ -74,23 +88,37 @@ public class Manage extends javax.swing.JFrame {
         register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerActionPerformed(evt);
+                
+                conexion.openConection();
+                
+                try {
+					
+                	conexion.setStmt(conexion.getConn().createStatement());
+					conexion.getStmt().executeQuery("INSERT INTO ENVIO (`PEDIDO_idPEDIDO`, estado, fechaEntrega) VALUES (" + orderId + ", 'En proceso', STR_TO_DATE('" + OrderId.getText() + "', '%d-%m-%Y'));");
+	    			System.out.println("INSERT INTO ENVIO (`PEDIDO_idPEDIDO`, estado, fechaEntrega) VALUES (" + orderId + ", 'En proceso', STR_TO_DATE('" + OrderId.getText() + "', '%d-%m-%Y'));");
+	                
+	    			conexion.setStmt(conexion.getConn().createStatement());
+	    			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idENVIO` FROM `ENVIO`  ORDER BY `idENVIO` DESC LIMIT 1");
+	    			rs.next();
+	    			String envioId = rs.getString("idENVIO");
+	    			
+	    			conexion.getStmt().executeQuery("INSERT INTO `DETALLE_ENVIO` (`nombreProducto`, cantidad, `ENVIO_idENVIO`) VALUES ('" + jTable7.getValueAt(jTable7.getSelectedRow(), 0) + "', " + jTable7.getValueAt(jTable7.getSelectedRow(), 1) + ", " + envioId + ");");
+					System.out.println("INSERT INTO `DETALLE_ENVIO` (`nombreProducto`, cantidad, `ENVIO_idENVIO`) VALUES ('" + jTable7.getValueAt(jTable7.getSelectedRow(), 0) + "', " + jTable7.getValueAt(jTable7.getSelectedRow(), 1) + ", " + envioId + ");");
+	    			
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+    		conexion.closeConection();
+                
             }
         });
         order.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
 
         getContentPane().add(order, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 440, 260));
 
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
+        retrieveTable2();
         orderT.setViewportView(jTable7);
 
         getContentPane().add(orderT, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, 600, 470));
@@ -139,6 +167,52 @@ public class Manage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void retrieveTable2() {
+
+		conexion.openConection();
+
+		System.out.println("Creating Statement");
+
+		try {
+
+			conexion.setStmt(conexion.getConn().createStatement());
+
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT `nombreProductO` AS Producto, cantidad AS Cantidad FROM `DETALLE`, `PRODUCTO`, `PEDIDO`, `FACTURA` WHERE `PRODUCTO_idPRODUCTO` = `idPRODUCTO` AND `idFACTURA` = PEDIDO.FACTURA_idFACTURA AND DETALLE.FACTURA_idFACTURA = `idFACTURA` AND `idPEDIDO` = " + orderId + ";");
+			System.out.println("SELECT `nombreProductO` AS Producto, cantidad AS Cantidad FROM `DETALLE`, `PRODUCTO`, `PEDIDO`, `FACTURA` WHERE `PRODUCTO_idPRODUCTO` = `idPRODUCTO` AND `idFACTURA` = PEDIDO.FACTURA_idFACTURA AND DETALLE.FACTURA_idFACTURA = `idFACTURA` AND `idPEDIDO` = " + orderId + " ;");
+			ResultSetMetaData metaData = rs.getMetaData();
+
+			int numberOfColumns = metaData.getColumnCount();
+			Vector<String> columnames = new Vector<String>();
+
+			for(int column = 0 ; column < numberOfColumns ; column++)
+				columnames.addElement(metaData.getColumnLabel(column + 1));
+
+			Vector<Object> rows = new Vector<Object>();
+
+			while(rs.next()) {
+
+				Vector<String> newRow = new Vector<String>();
+
+				for(int i = 1 ; i <= numberOfColumns; i++)
+					newRow.addElement(rs.getString(i));
+
+				rows.addElement(newRow);
+
+			}
+
+			jTable7.setModel(new DefaultTableModel(rows, columnames));
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.closeConection();
+
+
+	}
+    
     private void logOut3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut3ActionPerformed
         Staff staff=new Staff();
         staff.setVisible(true);
@@ -195,7 +269,7 @@ public class Manage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Manage().setVisible(true);
+                new Manage("id").setVisible(true);
             }
         });
     }
@@ -213,4 +287,7 @@ public class Manage extends javax.swing.JFrame {
     private javax.swing.JLabel padlock17;
     private javax.swing.JButton register;
     // End of variables declaration//GEN-END:variables
+    
+    private JDBC conexion = new JDBC();
+    
 }
