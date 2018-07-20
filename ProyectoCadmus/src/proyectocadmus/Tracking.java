@@ -39,8 +39,10 @@ public class Tracking extends javax.swing.JFrame {
 
 			conexion.setStmt(conexion.getConn().createStatement());
 
-			ResultSet rs = conexion.getStmt().executeQuery("SELECT idCLIENTE AS ID, nombreCli AS Nombre, telefono AS Telefono, id AS Cedula, correo AS Correo, direccion AS Direccion  FROM `CLIENTE`, `LUGARGEO` WHERE CLIENTE.LUGARGEO_idLUGARGEO = LUGARGEO.idLUGARGEO;");
-			System.out.println("SELECT nombreCli AS Nombre, telefono AS Telefono, id AS Cedula, correo AS Correo, direccion AS Direccion  FROM `CLIENTE`, `LUGARGEO` WHERE CLIENTE.LUGARGEO_idLUGARGEO = LUGARGEO.idLUGARGEO;");
+			
+			
+			ResultSet rs = conexion.getStmt().executeQuery("SELECT `idENVIO`, `nombreProducto`, cantidad, ENVIO.estado, fechaEntrega   FROM `DETALLE_ENVIO`, `ENVIO`, `PEDIDO`, `FACTURA`,`CLIENTE`  WHERE ENVIO_idENVIO = `idENVIO` AND `FACTURA_idFACTURA` = `idFACTURA` AND `CLIENTE_idCLIENTE` = `idCLIENTE`  AND`CLIENTE_idCLIENTE` = 13;");
+			System.out.println("SELECT `idENVIO`, `nombreProducto`, cantidad, ENVIO.estado, fechaEntrega   FROM `DETALLE_ENVIO`, `ENVIO`, `PEDIDO`, `FACTURA`,`CLIENTE`  WHERE ENVIO_idENVIO = `idENVIO` AND `FACTURA_idFACTURA` = `idFACTURA` AND `CLIENTE_idCLIENTE` = `idCLIENTE`  AND`CLIENTE_idCLIENTE` = 13;");
 			ResultSetMetaData metaData = rs.getMetaData();
 
 			int numberOfColumns = metaData.getColumnCount();
