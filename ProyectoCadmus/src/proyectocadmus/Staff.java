@@ -38,9 +38,9 @@ public class Staff extends javax.swing.JFrame {
         log = new javax.swing.JPanel();
         user = new javax.swing.JLabel();
         padlock = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
         login = new javax.swing.JButton();
         username = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
         home = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
@@ -60,14 +60,6 @@ public class Staff extends javax.swing.JFrame {
         padlock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/padlocker.png"))); // NOI18N
         log.add(padlock, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
-        password.setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
-        log.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 50));
-
         login.setBackground(new java.awt.Color(9, 20, 104));
         login.setFont(new java.awt.Font("PT Mono", 0, 18)); // NOI18N
         login.setForeground(new java.awt.Color(255, 255, 255));
@@ -78,12 +70,7 @@ public class Staff extends javax.swing.JFrame {
         login.setLabel("LOGIN");
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	
-            	if(username.getText().equals("root") && password.getText().equals("toor"))
-            		
-            		loginActionPerformed(evt);
-            	
-            	
+                loginActionPerformed(evt);
             }
         });
         log.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 350, 45));
@@ -100,6 +87,7 @@ public class Staff extends javax.swing.JFrame {
             }
         });
         log.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 350, 50));
+        log.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 50));
 
         getContentPane().add(log, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 200, 430, 370));
 
@@ -125,10 +113,6 @@ public class Staff extends javax.swing.JFrame {
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_loginActionPerformed
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
@@ -187,7 +171,7 @@ public class Staff extends javax.swing.JFrame {
     private javax.swing.JLabel loger;
     private javax.swing.JButton login;
     private javax.swing.JLabel padlock;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JLabel user;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
