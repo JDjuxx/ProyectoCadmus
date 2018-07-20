@@ -1660,7 +1660,7 @@ private void retreiveTable7Single() {
 	}//GEN-LAST:event_TypeEditActionPerformed
 
 	private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-		// TODO add your handling code here:
+            
 	}//GEN-LAST:event_passwordActionPerformed
 
 	private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
@@ -1692,7 +1692,7 @@ private void retreiveTable7Single() {
 	}//GEN-LAST:event_productActionPerformed
 
 	private void login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login1ActionPerformed
-		// TODO add your handling code here:
+           
 	}//GEN-LAST:event_login1ActionPerformed
 
 	private void valueFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_valueFocusLost
@@ -1720,11 +1720,11 @@ private void retreiveTable7Single() {
 	}//GEN-LAST:event_find1ActionPerformed
 
 	private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
-		// TODO add your handling code here:
+            
 	}//GEN-LAST:event_delete1ActionPerformed
 
 	private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-		// TODO add your handling code here:
+            
 	}//GEN-LAST:event_deleteActionPerformed
 
 	private void findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findActionPerformed
@@ -1740,7 +1740,7 @@ private void retreiveTable7Single() {
 	}//GEN-LAST:event_editTActionPerformed
 
 	private void editProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductActionPerformed
-		// TODO add your handling code here:
+            
 	}//GEN-LAST:event_editProductActionPerformed
 
 	private void textEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEActionPerformed
@@ -1748,7 +1748,7 @@ private void retreiveTable7Single() {
 	}//GEN-LAST:event_textEActionPerformed
 
 	private void editUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserActionPerformed
-		// TODO add your handling code here:
+           
 	}//GEN-LAST:event_editUserActionPerformed
 
 	private void logOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut2ActionPerformed
