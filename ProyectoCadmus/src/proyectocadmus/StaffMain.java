@@ -416,6 +416,7 @@ public class StaffMain extends javax.swing.JFrame {
 				}
 
 				retrieveTable1();
+				cleanU();
                 
             }
         });
@@ -556,6 +557,7 @@ public class StaffMain extends javax.swing.JFrame {
 				}
 
 				retrieveTable2();
+				cleanP();
                 
             }
         });
@@ -677,7 +679,7 @@ public class StaffMain extends javax.swing.JFrame {
 					retrieveTable3();
 
 				}
-                
+                cleanDu();
             }
         });
         deleteUser.add(find, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 45));
@@ -758,7 +760,7 @@ public class StaffMain extends javax.swing.JFrame {
 					retrieveTable4();
 
 				}
-
+				celanDp();
 
 			}
 		});
@@ -953,6 +955,7 @@ public class StaffMain extends javax.swing.JFrame {
 				conexion.closeConection();
 
 				retrieveTable6();
+				cleanEp();
                 
             }
         });
@@ -1045,6 +1048,7 @@ public class StaffMain extends javax.swing.JFrame {
 				conexion.closeConection();
 
 				retrieveTable5();
+				cleanDu();
                 
             }
         });

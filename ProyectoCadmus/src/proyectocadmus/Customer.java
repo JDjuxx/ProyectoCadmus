@@ -13,6 +13,8 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author renatasanandres
@@ -111,7 +113,7 @@ public class Customer extends javax.swing.JFrame {
 							
 							
 						} else
-							System.out.println("Wrong User or password");
+							JOptionPane.showMessageDialog(null,"Wrong User or password");
 						
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block

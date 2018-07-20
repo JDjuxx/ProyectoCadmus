@@ -15,6 +15,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -148,6 +149,7 @@ public class Bill extends javax.swing.JFrame {
 				}
 				conexion.closeConection();
 				
+				
 			}
 		});
 		bill.add(buy, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 600, 350, 45));
@@ -262,7 +264,10 @@ public class Bill extends javax.swing.JFrame {
 
 	
 	private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
-
+		JOptionPane.showMessageDialog(null, "Compra Exitosa");
+		CustomerMain main = new CustomerMain();
+		main.setVisible(true);
+		this.dispose();
 	}//GEN-LAST:event_buyActionPerformed
 
 	private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
