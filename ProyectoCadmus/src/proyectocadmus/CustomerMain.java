@@ -99,6 +99,7 @@ public class CustomerMain extends javax.swing.JFrame {
 					searchRetrieveTable1();
 
 
+				
 			}
 		});
 		getContentPane().add(FIND, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 20, 70, 50));
